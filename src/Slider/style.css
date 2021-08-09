@@ -1,0 +1,150 @@
+.slider {
+  width: 100%;
+  display: inline-grid;
+  justify-content: space-between;
+  grid-gap: 16px;
+  grid-template-columns: 0.2fr 0.8fr;
+  grid-template-areas: "label slider";
+  margin: 16px 0;
+  width: 100%;
+  position: relative;
+  line-height: 0 !important;
+}
+
+.slider input {
+  width: 100%;
+  grid-area: slider;
+}
+
+.slider lable {
+  grid-area: label;
+}
+
+input {
+  box-sizing: border-box;
+  height: 6px !important;
+  padding: 0 !important;
+
+  border: 0px solid transparent !important;
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+.handle {
+  position: absolute;
+  box-sizing: border-box;
+  height: 26px;
+  width: 26px;
+  left: -13px;
+  background-color: #00bbf0;
+  cursor: pointer;
+  margin-top: -8px;
+  border-radius: 100%;
+  grid-area: slider;
+}
+
+input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  height: 12px;
+  width: 12px;
+  border: 4px solid #00bbf0;
+  background-color: #ffffff;
+  cursor: pointer;
+  margin-top: -3px;
+  border-radius: 100%;
+  display: none;
+}
+
+input::-moz-range-thumb {
+  box-sizing: border-box;
+  height: 12px;
+  width: 12px;
+  border: 4px solid #00bbf0;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 100%;
+  display: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px transparent;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 1) 33%,
+    rgba(239, 244, 248, 1) 33%,
+    rgba(239, 244, 248, 1) 66%,
+    rgba(255, 255, 255, 1) 66%
+  );
+  background-size: 6px 6px;
+  background-repeat: repeat;
+  border-radius: 7.5px;
+}
+
+input::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px transparent;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 1) 33%,
+    rgba(239, 244, 248, 1) 33%,
+    rgba(239, 244, 248, 1) 66%,
+    rgba(255, 255, 255, 1) 66%
+  );
+  background-size: 6px 6px;
+  background-repeat: repeat;
+  border-radius: 7.5px;
+}
+
+input.disabled::-webkit-slider-thumb {
+  border-color: #b6c7d4;
+}
+
+input.disabled::-moz-range-thumb {
+  border-color: #b6c7d4;
+}
+
+input.disabled::-webkit-slider-runnable-track {
+  background-color: #eff4f8;
+  background-image: none;
+}
+
+input.disabled::-moz-range-track {
+  background-color: #eff4f8;
+  background-image: none;
+}
+
+.progress {
+  position: absolute;
+  background-color: #00bbf0;
+  width: calc(100% - 12px);
+  height: 6px;
+  top: 2px;
+  left: 3px;
+  transform-origin: left;
+  transform: scaleX(var(--scale));
+  grid-area: slider;
+}
+
+.progress:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 6px;
+  top: 50%;
+  left: -3px;
+  border-radius: 100%;
+  transform: translateY(-50%) scaleX(calc(1 / var(--scale)));
+  background-color: #00bbf0;
+}

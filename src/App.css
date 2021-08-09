@@ -1,10 +1,44 @@
-.App {
-  text-align: center;
+:root {
+  --light-grey-1: #eff4f9;
+  --light-grey-2: #e2eaf0;
+  --white: #ffffff;
+  --navy: #093470;
+  --blue-grey: #5b6b7c;
+  --blue: #115fce;
+  --body-width: 700px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: var(--light-grey-1);
+  height: 100vh;
+}
+
+p,
+a {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+a {
+  color: #115fce;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #115fce;
+}
+
+.App {
+  display: grid;
+  grid-gap: 16px;
+  grid-template:
+    "header" 58px
+    "body" 1fr
+    "footer" 76px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,26 +47,80 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.app-inner {
+  max-width: var(--body-width);
+  justify-self: center;
+  grid-area: body;
+}
+
+.avatar-wrapper {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 256px;
+  padding: 16px 0;
+}
+
+.avatar {
+  position: relative;
+  display: block;
+  aspect-ratio: 0.99;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.avatar > svg {
+  position: absolute;
+  width: 100%;
+}
+
+.sliders-wrapper {
+  padding: 16px 33px;
+  background-color: var(--white);
+  border-radius: 4px;
+}
+
+.skin-tone {
+  transition: fill 250ms ease-in-out;
+  fill: var(--skin-tone);
+}
+
+.header {
+  background-color: var(--navy);
+  width: 100%;
+  display: grid;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  grid-area: header;
+}
+
+.logo {
+  width: 180px;
+}
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  background-color: var(--light-grey-2);
+}
+
+.footer-inner {
+  min-width: var(--body-width);
+  display: flex;
+  margin: 0 auto;
+  align-self: center;
+  justify-content: space-between;
+}
+
+.print-button,
+.save-button {
+  align-self: center;
+}
+
+.print-button {
+  background-color: var(--blue);
   color: white;
+  padding: 12px 14px;
+  border-radius: 4px;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.print-button:visited {
+  color: white;
 }
