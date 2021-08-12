@@ -3,7 +3,7 @@
   display: inline-grid;
   justify-content: space-between;
   grid-gap: 16px;
-  grid-template-columns: 0.2fr 0.8fr;
+  grid-template-columns: 0.35fr 0.65fr;
   grid-template-areas: "label slider";
   margin: 16px 0;
   width: 100%;
@@ -37,11 +37,12 @@ input {
   height: 26px;
   width: 26px;
   left: -13px;
-  background-color: #00bbf0;
+  background-color: var(--blue);
   cursor: pointer;
   margin-top: -8px;
   border-radius: 100%;
   grid-area: slider;
+  touch-action: none;
 }
 
 input::-webkit-slider-thumb {
@@ -54,7 +55,8 @@ input::-webkit-slider-thumb {
   cursor: pointer;
   margin-top: -3px;
   border-radius: 100%;
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }
 
 input::-moz-range-thumb {
@@ -65,7 +67,7 @@ input::-moz-range-thumb {
   background-color: #ffffff;
   cursor: pointer;
   border-radius: 100%;
-  display: none;
+  visibility: hidden;
 }
 
 input:focus {
@@ -77,13 +79,7 @@ input::-webkit-slider-runnable-track {
   height: 6px;
   cursor: pointer;
   box-shadow: 0px 0px 0px transparent;
-  background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 1) 33%,
-    rgba(239, 244, 248, 1) 33%,
-    rgba(239, 244, 248, 1) 66%,
-    rgba(255, 255, 255, 1) 66%
-  );
+  background-color: var(--light-grey-2);
   background-size: 6px 6px;
   background-repeat: repeat;
   border-radius: 7.5px;
@@ -94,13 +90,7 @@ input::-moz-range-track {
   height: 6px;
   cursor: pointer;
   box-shadow: 0px 0px 0px transparent;
-  background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 1) 33%,
-    rgba(239, 244, 248, 1) 33%,
-    rgba(239, 244, 248, 1) 66%,
-    rgba(255, 255, 255, 1) 66%
-  );
+  background-color: var(--light-grey-2);
   background-size: 6px 6px;
   background-repeat: repeat;
   border-radius: 7.5px;

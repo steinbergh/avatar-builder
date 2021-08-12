@@ -1,10 +1,12 @@
 :root {
   --light-grey-1: #eff4f9;
   --light-grey-2: #e2eaf0;
+  --green: #25c191;
   --white: #ffffff;
   --navy: #093470;
   --blue-grey: #5b6b7c;
   --blue: #115fce;
+  --sky: #00bbf0;
   --body-width: 700px;
 }
 
@@ -15,7 +17,7 @@ body {
 
 p,
 a {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
 }
 
@@ -36,70 +38,53 @@ a:visited {
   display: grid;
   grid-gap: 16px;
   grid-template:
-    "header" 58px
+    "header" auto
     "body" 1fr
     "footer" 76px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .app-inner {
   max-width: var(--body-width);
   justify-self: center;
   grid-area: body;
-}
-
-.avatar-wrapper {
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: 1fr 256px;
-  padding: 16px 0;
-}
-
-.avatar {
-  position: relative;
-  display: block;
-  aspect-ratio: 0.99;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.avatar > svg {
-  position: absolute;
-  width: 100%;
-}
-
-.sliders-wrapper {
   padding: 16px 33px;
   background-color: var(--white);
   border-radius: 4px;
+  display: grid;
+  gap: 32px;
+  grid-template:
+    "slds avi"
+    "slds btns"
+    / 1fr 220px;
 }
 
-.skin-tone {
-  transition: fill 250ms ease-in-out;
-  fill: var(--skin-tone);
+.avatar-wrapper {
+  grid-area: avi;
+}
+
+.sliders-wrapper {
+  grid-area: slds;
 }
 
 .header {
-  background-color: var(--navy);
-  width: 100%;
+  justify-self: center;
+  max-width: var(--body-width);
   display: grid;
   justify-content: center;
   grid-area: header;
+  text-align: center;
+  padding-top: 24px;
 }
 
 .logo {
   width: 180px;
+  justify-self: center;
 }
 
 .footer {
   grid-area: footer;
   display: flex;
-  background-color: var(--light-grey-2);
+  background-color: var(--navy);
 }
 
 .footer-inner {
@@ -116,11 +101,14 @@ a:visited {
 }
 
 .print-button {
-  background-color: var(--blue);
+  background-color: var(--green);
   color: white;
   padding: 12px 14px;
   border-radius: 4px;
 }
+
+.save-button,
+.save-button:visited,
 .print-button:visited {
   color: white;
 }

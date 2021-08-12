@@ -1,0 +1,41 @@
+.avatar > svg {
+  position: absolute;
+  width: 100%;
+}
+
+.skin-tone {
+  transition: fill 250ms ease-in-out;
+  fill: var(--skin-tone);
+}
+
+.avatar-frame {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: var(--navy);
+  display: grid;
+  gap: 4px 50px;
+  align-items: center;
+  grid-template-areas:
+    "avi avi"
+    "qp conf";
+}
+
+.avatar {
+  position: relative;
+  display: block;
+  aspect-ratio: 0.99;
+  overflow: hidden;
+  border-radius: 4px;
+  width: 100%;
+  grid-area: avi;
+}
+
+.conference-logo {
+  grid-area: conf;
+  width: 100%;
+}
+
+.qp-logo {
+  grid-area: qp;
+  width: 100%;
+}

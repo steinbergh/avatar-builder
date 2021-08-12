@@ -3,30 +3,52 @@ import { skinTones, bgColors } from "../config";
 import { getPart, PartsKeys } from "../Parts";
 import { AvatarState } from "types";
 import { useSpring, animated } from "react-spring";
+import SaaStrLogo from "assets/svg/SaaStrLogo.png";
+import { ReactComponent as QPLogo } from "assets/svg/logo.svg";
+import "./style.css";
+import { RandomizeButton } from "./RandomizeButton";
 
 const parts = Object.values(PartsKeys);
 
-// const excludedParts = [PartsKeys.SKIN_TONE, PartsKeys.BG];
-
-export const Avatar = (props: AvatarState) => {
+export const Avatar = ({
+  onClick,
+  ...props
+}: AvatarState & { onClick: () => void }) => {
   const bg = useSpring({ to: { fill: bgColors[props.bg] } });
 
-  console.log(bg);
   return (
-    <div
-      style={
-        {
-          "--skin-tone": skinTones[props.skinTone],
-        } as React.CSSProperties
-      }
-      className="avatar"
-    >
-      <animated.svg viewBox="0 0 235 235">
-        <animated.rect width="235" height="235" style={bg} />
-      </animated.svg>
-      {parts.map(
-        (key) => key !== "skinTone" && key !== "bg" && getPart(key, props[key])
-      )}
-    </div>
+    <>
+      <div className="avatar-frame">
+        <div
+          style={
+            {
+              "--skin-tone": skinTones[props.skinTone],
+            } as React.CSSProperties
+          }
+          className="avatar"
+        >
+          <animated.svg viewBox="0 0 235 235">
+            <animated.rect width="235" height="235" style={bg} />
+          </animated.svg>
+          {parts.map(
+            (key) =>
+              key !== "skinTone" &&
+              key !== "bg" &&
+              key !== "accessory" &&
+              getPart(key, props[key])
+          )}
+          {props[PartsKeys.ACCESSORY].map((acc) =>
+            getPart(PartsKeys.ACCESSORY, acc)
+          )}
+        </div>
+        <QPLogo className="qp-logo" />
+        <img
+          className="conference-logo"
+          src={SaaStrLogo}
+          alt="the SaaStr Logo"
+        />
+      </div>
+      <RandomizeButton onClick={onClick} />
+    </>
   );
 };

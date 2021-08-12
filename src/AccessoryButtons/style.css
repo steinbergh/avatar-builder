@@ -1,0 +1,33 @@
+.accs-btns {
+  grid-area: btns;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.accs-btn {
+  transition: transform 230ms ease-in-out, background-color 230ms ease-in-out;
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background-color: var(--light-grey-2);
+  cursor: pointer;
+  transform: scale(1);
+}
+
+.accs-btn:hover {
+  transform: scale(1.1);
+}
+
+.accs-btn.active {
+  background-color: var(--sky);
+}
+
+.accs-btn > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  width: 150%;
+  pointer-events: none;
+}

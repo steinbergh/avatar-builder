@@ -1,7 +1,5 @@
 import { ReactComponent as Accessory1 } from "./assets/svg/accessory-1.svg";
 import { ReactComponent as Accessory2 } from "./assets/svg/accessory-2.svg";
-import { ReactComponent as Bg1 } from "./assets/svg/bg-1.svg";
-import { ReactComponent as Bg2 } from "./assets/svg/bg-2.svg";
 import { ReactComponent as Body1 } from "./assets/svg/body-1.svg";
 import { ReactComponent as Body2 } from "./assets/svg/body-2.svg";
 import { ReactComponent as Eyes1 } from "./assets/svg/eyes-1.svg";
@@ -46,7 +44,6 @@ const partsMap = (key: PartsKeys, index: number): PartsMap => ({
     <Mouth2 key={`${key}-${index}`} />,
   ],
   nose: [<Nose1 key={`${key}-${index}`} />, <Nose2 key={`${key}-${index}`} />],
-  // bg: [<Bg1 key={`${key}-${index}`} />, <Bg2 key={`${key}-${index}`} />],
 });
 
 export const getPart = (key: PartsKeysParams, index: number) =>

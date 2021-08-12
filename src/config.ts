@@ -12,17 +12,16 @@ export const skinTones = [
 ];
 
 export const bgColors = [
-  "#00BBF0",
-  "#093470",
-  // "#00204A",
-  // "#EFF4F8",
-  "#087F51",
-  "#C65500",
-  "#9E154D",
-  "#014C63",
-  "#186F9B",
+  "#7D77C9",
   "#645BA5",
-  "#251B68",
+  "#FCB17E",
+  "#FF9C4A",
+  "#E25495",
+  "#EA2A74",
+  "#2BE28A",
+  "#25C191",
+  "#4BBDEA",
+  "#2E97CC",
 ];
 
 export const config = {
@@ -37,10 +36,11 @@ export const config = {
       printNow: "Print now",
     },
   },
-  inputs: [
+  buttons: [{ label: "Accessories", values: [0, 1], key: PartsKeys.ACCESSORY }],
+  sliders: [
     {
       label: "Skin Tone",
-      values: new Array(skinTones.length - 1),
+      values: new Array(skinTones.length),
       key: PartsKeys.SKIN_TONE,
     },
     { label: "Face Shape", values: new Array(2), key: PartsKeys.FACE },
@@ -52,10 +52,9 @@ export const config = {
     // { label: "Facial Hair", values: new Array(2), key: "facial-hair" },
     { label: "Body", values: new Array(2), key: PartsKeys.BODY },
     // { label: "Shirt Color", values: new Array(2), key: "shirt-color" },
-    { label: "Accessories", values: new Array(2), key: PartsKeys.ACCESSORY },
     {
       label: "Background",
-      values: new Array(bgColors.length - 1),
+      values: new Array(bgColors.length),
       key: PartsKeys.BG,
     },
   ],
