@@ -2,13 +2,23 @@
   width: 100%;
   display: inline-grid;
   justify-content: space-between;
-  grid-gap: 16px;
-  grid-template-columns: 0.35fr 0.65fr;
-  grid-template-areas: "label slider";
+  grid-gap: 24px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "label"
+    "slider";
   margin: 16px 0;
   width: 100%;
   position: relative;
   line-height: 0 !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .slider {
+    grid-gap: 16px;
+    grid-template-columns: 0.35fr 0.65fr;
+    grid-template-areas: "label slider";
+  }
 }
 
 .slider input {
@@ -18,6 +28,13 @@
 
 .slider lable {
   grid-area: label;
+  padding-bottom: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+  .slider lable {
+    padding-bottom: 0;
+  }
 }
 
 input {

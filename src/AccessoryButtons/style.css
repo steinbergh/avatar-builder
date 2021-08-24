@@ -31,3 +31,17 @@
   width: 150%;
   pointer-events: none;
 }
+
+@supports not (aspect-ratio: 1) {
+  .accs-btn::before {
+    float: left;
+    padding-top: 100%;
+    content: "";
+  }
+
+  .accs-btn::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}

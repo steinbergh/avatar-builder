@@ -8,11 +8,14 @@
   --blue: #115fce;
   --sky: #00bbf0;
   --body-width: 700px;
+
+  --mobile-bp: 428px;
 }
 
 body {
   background-color: var(--light-grey-1);
   height: 100vh;
+  width: 100%;
 }
 
 p,
@@ -45,19 +48,31 @@ a:visited {
 
 .app-inner {
   max-width: var(--body-width);
+  width: 75%;
   justify-self: center;
   grid-area: body;
   padding: 16px 33px;
   background-color: var(--white);
   border-radius: 4px;
-  display: grid;
-  gap: 32px;
+  position: relative;
+  display: inline-grid;
+  gap: 16px;
   grid-template:
-    "slds avi"
-    "slds btns"
-    / 1fr 220px;
+    "avi"
+    "slds"
+    "btns";
 }
 
+@media only screen and (min-width: 768px) {
+  .app-inner {
+    width: 100%;
+    gap: 6px 32px;
+    grid-template:
+      "slds avi"
+      "slds btns"
+      / 1fr 220px;
+  }
+}
 .avatar-wrapper {
   grid-area: avi;
 }
@@ -74,6 +89,8 @@ a:visited {
   grid-area: header;
   text-align: center;
   padding-top: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .logo {
@@ -88,11 +105,18 @@ a:visited {
 }
 
 .footer-inner {
-  min-width: var(--body-width);
+  max-width: var(--body-width);
+  width: 80%;
   display: flex;
   margin: 0 auto;
   align-self: center;
   justify-content: space-between;
+}
+
+@media only screen and (min-width: 768px) {
+  .footer-inner {
+    width: 100%;
+  }
 }
 
 .print-button,
