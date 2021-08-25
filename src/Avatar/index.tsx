@@ -1,5 +1,5 @@
 import React from "react";
-import { skinTones, bgColors } from "../config";
+import { skinTones, bgColors, shirtColors, hairColors } from "../config";
 import { getPart, PartsKeys } from "../Parts";
 import { AvatarState } from "types";
 import { useSpring, animated } from "react-spring";
@@ -23,6 +23,8 @@ export const Avatar = ({
           style={
             {
               "--skin-tone": skinTones[props.skinTone],
+              "--shirt-color": shirtColors[props.shirtColor],
+              "--hair-color": hairColors[props.hairColor],
             } as React.CSSProperties
           }
           className="avatar"
@@ -35,6 +37,8 @@ export const Avatar = ({
               key !== "skinTone" &&
               key !== "bg" &&
               key !== "accessory" &&
+              key !== "shirtColor" &&
+              key !== "hairColor" &&
               getPart(key, props[key])
           )}
           {props[PartsKeys.ACCESSORY].map((acc) =>

@@ -1,27 +1,56 @@
 import { PartsKeys } from "Parts";
+import { mouths } from "./assets/svg/mouth";
+import { bodies } from "./assets/svg/body";
+import { eyes } from "./assets/svg/eyes";
+import { faces } from "./assets/svg/face";
+import { noses } from "./assets/svg/nose";
+import { hair } from "./assets/svg/hair";
 
 export const skinTones = [
-  "#F9D0B4",
-  "#F2BE97",
-  "#E0A585",
-  "#CC816D",
-  "#BF6F52",
-  "#A85845",
-  "#5E362B",
+  "#f9d0b4",
+  "#f2be97",
+  "#e0a585",
+  "#cc816d",
+  "#bf6f52",
+  "#a85845",
+  "#5e362b",
   "#563128",
 ];
 
 export const bgColors = [
-  "#7D77C9",
-  "#645BA5",
-  "#FCB17E",
-  "#FF9C4A",
-  "#E25495",
-  "#EA2A74",
-  "#2BE28A",
-  "#25C191",
-  "#4BBDEA",
-  "#2E97CC",
+  "#645ba5",
+  "#ff9c4a",
+  "#ea2a74",
+  "#25c191",
+  "#00bbf0",
+  "#c65500",
+  "#9e154d",
+  "#251b68",
+];
+
+export const shirtColors = [
+  "#ffffff",
+  "#b6c7d4",
+  "#186f9b",
+  "#7d77c9",
+  "#00204a",
+  "#087f51",
+  "#e25495",
+  "#0f1d2b",
+];
+
+export const hairColors = [
+  "#91a3b0",
+  "#edca96",
+  "#ddb95f",
+  "#e5955e",
+  "#bc221b",
+  "#6d3f19",
+  "#3a2522",
+  "#000000",
+  "#e25495",
+  "#4bbdea",
+  "#993d810",
 ];
 
 export const config = {
@@ -43,15 +72,31 @@ export const config = {
       values: new Array(skinTones.length),
       key: PartsKeys.SKIN_TONE,
     },
-    { label: "Face Shape", values: new Array(2), key: PartsKeys.FACE },
-    { label: "Hair Syle", values: new Array(2), key: PartsKeys.HAIR },
-    // { label: "Hair Color", values: new Array(2), key: "hair-color" },
-    { label: "Eyes & Brows", values: new Array(2), key: PartsKeys.EYES },
-    { label: "Nose", values: new Array(2), key: PartsKeys.NOSE },
-    { label: "Mouth", values: new Array(2), key: PartsKeys.MOUTH },
+    {
+      label: "Face Shape",
+      values: new Array(faces.length),
+      key: PartsKeys.FACE,
+    },
+    { label: "Hair Syle", values: new Array(hair.length), key: PartsKeys.HAIR },
+    {
+      label: "Hair Color",
+      values: new Array(hairColors.length),
+      key: PartsKeys.HAIR_COLOR,
+    },
+    {
+      label: "Eyes & Brows",
+      values: new Array(eyes.length),
+      key: PartsKeys.EYES,
+    },
+    { label: "Nose", values: new Array(noses.length), key: PartsKeys.NOSE },
+    { label: "Mouth", values: new Array(mouths.length), key: PartsKeys.MOUTH },
     // { label: "Facial Hair", values: new Array(2), key: "facial-hair" },
-    { label: "Body", values: new Array(2), key: PartsKeys.BODY },
-    // { label: "Shirt Color", values: new Array(2), key: "shirt-color" },
+    { label: "Body", values: new Array(bodies.length), key: PartsKeys.BODY },
+    {
+      label: "Shirt Color",
+      values: new Array(shirtColors.length),
+      key: PartsKeys.SHIRT_COLOR,
+    },
     {
       label: "Background",
       values: new Array(bgColors.length),

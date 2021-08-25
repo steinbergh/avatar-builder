@@ -3,9 +3,19 @@
   width: 100%;
 }
 
-.skin-tone {
+.c-skin {
   transition: fill 250ms ease-in-out;
   fill: var(--skin-tone);
+}
+
+.c-hair {
+  transition: fill 250ms ease-in-out;
+  fill: var(--hair-color);
+}
+
+.c-shirt {
+  transition: fill 250ms ease-in-out;
+  fill: var(--shirt-color);
 }
 
 .avatar-frame {
