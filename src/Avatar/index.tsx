@@ -6,19 +6,15 @@ import { useSpring, animated } from "react-spring";
 import SaaStrLogo from "assets/svg/SaaStrLogo.png";
 import { ReactComponent as QPLogo } from "assets/svg/logo.svg";
 import "./style.css";
-import { RandomizeButton } from "./RandomizeButton";
 
 const parts = Object.values(PartsKeys);
 
-export const Avatar = ({
-  onClick,
-  ...props
-}: AvatarState & { onClick: () => void }) => {
-  const bg = useSpring({ to: { fill: bgColors[props.bg] } });
+export const Avatar = React.forwardRef<HTMLDivElement, AvatarState>(
+  (props, ref) => {
+    const bg = useSpring({ to: { fill: bgColors[props.bg] } });
 
-  return (
-    <>
-      <div className="avatar-frame">
+    return (
+      <div ref={ref} id="avatar" className="avatar-frame">
         <div
           style={
             {
@@ -52,7 +48,6 @@ export const Avatar = ({
           alt="the SaaStr Logo"
         />
       </div>
-      <RandomizeButton onClick={onClick} />
-    </>
-  );
-};
+    );
+  }
+);

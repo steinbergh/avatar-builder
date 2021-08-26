@@ -56,7 +56,6 @@ const Slider = ({ label, onChange, value, values }: SliderProps) => {
       )?.set;
 
       if (nativeSetter) {
-        console.log(inputValue.toString());
         nativeSetter.call(sliderRef.current, String(inputValue));
         sliderRef.current.dispatchEvent(new Event("change", { bubbles: true }));
       }
@@ -91,7 +90,6 @@ const Slider = ({ label, onChange, value, values }: SliderProps) => {
     }
   );
 
-  console.log(label, values.length - 1);
   return (
     <div className="slider">
       <animated.label htmlFor={label}>{label}</animated.label>

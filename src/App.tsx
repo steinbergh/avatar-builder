@@ -1,5 +1,5 @@
 import { config } from "config";
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { AvatarState } from "types";
 import { ReactComponent as Logo } from "assets/svg/logo-dark.svg";
 import "App.css";
@@ -8,6 +8,9 @@ import { Avatar } from "Avatar";
 import { PartsKeys } from "Parts";
 import { AccessoryButtons } from "AccessoryButtons";
 import { randomizedAvatar } from "utils/randomized";
+import { RandomizeButton } from "Avatar/RandomizeButton";
+import axios from "axios";
+import { toBlob } from "html-to-image";
 
 const { copy, sliders, buttons } = config;
 
@@ -27,7 +30,43 @@ const avatar: AvatarState = {
 
 function App() {
   const [state, setState] = useState<AvatarState>(avatar);
+  const aviRef = useRef<HTMLDivElement>(null);
   const accessories = state[PartsKeys.ACCESSORY];
+
+  const onClickSaveOrPrint = useCallback(() => {
+    if (aviRef.current === null) {
+      return;
+    }
+
+    const fileName = Object.entries(state).reduce(
+      (prev, cur) =>
+        `${prev}${Array.isArray(cur[1]) ? cur[1].join("") : cur[1]}`,
+      ""
+    );
+
+    toBlob(aviRef.current, { cacheBust: true })
+      .then((blob) => {
+        if (!blob) return;
+        // const link = document.createElement("a");
+        console.log(fileName);
+        // Create an object of formData
+        const formData = new FormData();
+
+        // Update the formData object
+        formData.append("myFile", blob, fileName);
+
+        // Details of the uploaded file
+        console.log(blob);
+
+        // Request made to the backend api
+        // Send formData object to my php file for save in folder
+        axios.post(process.env.PUBLIC_URL + "/upload.php", formData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [aviRef, state]);
+
   return (
     <div className="App">
       <div className="header">
@@ -41,7 +80,8 @@ function App() {
       </div>
       <div className="app-inner">
         <div className="avatar-wrapper">
-          <Avatar onClick={() => setState(randomizedAvatar())} {...state} />
+          <Avatar ref={aviRef} {...state} />
+          <RandomizeButton onClick={() => setState(randomizedAvatar())} />
         </div>
         {buttons.map(
           ({ key, values }) =>
@@ -78,9 +118,9 @@ function App() {
       </div>
       <div className="footer">
         <div className="footer-inner">
-          <a className="save-button" href="#">
+          <button className="save-button" onClick={onClickSaveOrPrint}>
             {copy.buttons.saveAndEmail}
-          </a>
+          </button>
           <a className="print-button" href="#">
             {copy.buttons.printNow}
           </a>
