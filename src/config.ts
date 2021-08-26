@@ -77,7 +77,11 @@ export const config = {
       values: new Array(faces.length),
       key: PartsKeys.FACE,
     },
-    { label: "Hair Syle", values: new Array(hair.length), key: PartsKeys.HAIR },
+    {
+      label: "Hair Style",
+      values: new Array(hair.length),
+      key: PartsKeys.HAIR,
+    },
     {
       label: "Hair Color",
       values: new Array(hairColors.length),
