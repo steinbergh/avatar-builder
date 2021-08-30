@@ -18,12 +18,18 @@
   fill: var(--shirt-color);
 }
 
+.avatar-border {
+  border: 2px solid var(--light-grey-2);
+  border-radius: 4px;
+}
+
 .avatar-frame {
   padding: 10px;
   border-radius: 4px;
-  background-color: var(--navy);
+  background-color: var(--white);
+
   display: grid;
-  gap: 4px 50px;
+  gap: 8px 50px;
   align-items: center;
   grid-template-areas:
     "avi avi"
@@ -42,12 +48,13 @@
 
 .conference-logo {
   grid-area: conf;
-  width: 100%;
+  width: 80%;
+  justify-self: end;
 }
 
 .qp-logo {
   grid-area: qp;
-  width: 100%;
+  width: 125%;
 }
 
 @supports not (aspect-ratio: 1) {

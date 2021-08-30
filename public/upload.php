@@ -1,6 +1,6 @@
 <?php
 //Upload folder
-$target_dir = "%PUBLIC_URL%/img/";
+$target_dir = "./img/";
 $target_file = $target_dir . basename($_FILES["myFile"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image

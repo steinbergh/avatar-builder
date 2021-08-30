@@ -11,6 +11,10 @@
 # production
 /build
 
+# assets
+/public/img/*
+!/public/img/.gitkeep
+
 # misc
 .DS_Store
 .env.local

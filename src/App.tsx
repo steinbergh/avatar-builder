@@ -30,6 +30,7 @@ const avatar: AvatarState = {
 
 function App() {
   const [state, setState] = useState<AvatarState>(avatar);
+  const [fileName, setFileName] = useState("");
   const aviRef = useRef<HTMLDivElement>(null);
   const accessories = state[PartsKeys.ACCESSORY];
 
@@ -38,7 +39,7 @@ function App() {
       return;
     }
 
-    const fileName = Object.entries(state).reduce(
+    const _fileName = Object.entries(state).reduce(
       (prev, cur) =>
         `${prev}${Array.isArray(cur[1]) ? cur[1].join("") : cur[1]}`,
       ""
@@ -48,19 +49,26 @@ function App() {
       .then((blob) => {
         if (!blob) return;
         // const link = document.createElement("a");
-        console.log(fileName);
+
         // Create an object of formData
         const formData = new FormData();
 
         // Update the formData object
-        formData.append("myFile", blob, fileName);
+        formData.append("myFile", blob, `${_fileName}.png`);
 
         // Details of the uploaded file
         console.log(blob);
 
         // Request made to the backend api
         // Send formData object to my php file for save in folder
-        axios.post(process.env.PUBLIC_URL + "/upload.php", formData);
+        axios
+          .post(
+            process.env.NODE_ENV === "development"
+              ? "http://localhost:8888/upload.php"
+              : process.env.PUBLIC_URL + "/upload.php",
+            formData
+          )
+          .then(() => setFileName(_fileName));
       })
       .catch((err) => {
         console.log(err);
