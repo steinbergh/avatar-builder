@@ -37,7 +37,7 @@
   }
 }
 
-input {
+.slider input {
   box-sizing: border-box;
   height: 6px !important;
   padding: 0 !important;

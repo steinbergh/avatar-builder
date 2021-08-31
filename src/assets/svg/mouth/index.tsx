@@ -9,12 +9,12 @@ import { ReactComponent as Mouth7 } from "./mouth-7.svg";
 import { ReactComponent as Mouth8 } from "./mouth-8.svg";
 
 export const mouths = [
-  <Mouth1 />,
-  <Mouth2 />,
-  <Mouth3 />,
-  <Mouth4 />,
-  <Mouth5 />,
-  <Mouth6 />,
-  <Mouth7 />,
-  <Mouth8 />,
-];
+  Mouth1,
+  Mouth2,
+  Mouth3,
+  Mouth4,
+  Mouth5,
+  Mouth6,
+  Mouth7,
+  Mouth8,
+].map((C, i) => <C key={`mouth-${i}`} />);

@@ -9,12 +9,12 @@ import { ReactComponent as Face7 } from "./face-7.svg";
 import { ReactComponent as Face8 } from "./face-8.svg";
 
 export const faces = [
-  <Face1 />,
-  <Face2 />,
-  <Face3 />,
-  <Face4 />,
-  <Face5 />,
-  <Face6 />,
-  <Face7 />,
-  <Face8 />,
-];
+  Face1,
+  Face2,
+  Face3,
+  Face4,
+  Face5,
+  Face6,
+  Face7,
+  Face8,
+].map((C, i) => <C key={`face-${i}`} />);

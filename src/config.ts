@@ -55,14 +55,13 @@ export const hairColors = [
 
 export const config = {
   copy: {
-    title: "Building comp plans in QuotaPath is this fun & simple.",
+    title: "Commission tracking made for you",
     body: [
-      "Create a Naviagtor to unlock lorem ipsum dolor sit amet. This is placeholder copy our plan builder is just as easy as our plug and play character creator.",
-      "The value of QuotaPath is undeniable, give it a go.",
+      "Whether you’re a sales rep, leader, in Finance and Accounting, our solution is as custom, and creative as you. Create your own avatar to experience what it’s like to build comp plans, and forecast in QuotaPath.",
     ],
     buttons: {
-      saveAndEmail: "Save & Email",
-      printNow: "Print now",
+      saveAndEmail: "Email",
+      printNow: "Print Sticker",
     },
   },
   buttons: [{ label: "Accessories", values: [0, 1], key: PartsKeys.ACCESSORY }],
@@ -93,7 +92,11 @@ export const config = {
       key: PartsKeys.EYES,
     },
     { label: "Nose", values: new Array(noses.length), key: PartsKeys.NOSE },
-    { label: "Mouth", values: new Array(mouths.length), key: PartsKeys.MOUTH },
+    {
+      label: "Mouth",
+      values: new Array(mouths.length),
+      key: PartsKeys.MOUTH,
+    },
     // { label: "Facial Hair", values: new Array(2), key: "facial-hair" },
     { label: "Body", values: new Array(bodies.length), key: PartsKeys.BODY },
     {

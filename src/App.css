@@ -3,7 +3,8 @@
   --light-grey-2: #e2eaf0;
   --green: #25c191;
   --white: #ffffff;
-  --navy: #093470;
+  --navy: #00204a;
+  /* --navy: #093470; */
   --blue-grey: #5b6b7c;
   --blue: #115fce;
   --sky: #00bbf0;
@@ -18,10 +19,20 @@ body {
   width: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 p,
 a {
   font-size: 16px;
   line-height: 24px;
+}
+
+button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
 }
 
 h1 {
@@ -42,8 +53,8 @@ a:visited {
   grid-gap: 16px;
   grid-template:
     "header" auto
-    "body" 1fr
-    "footer" 76px;
+    "copy"
+    "body" 1fr;
 }
 
 .app-inner {
@@ -60,28 +71,41 @@ a:visited {
   grid-template:
     "avi"
     "slds"
-    "btns";
+    "btns"
+    "prnt";
+}
+
+.app-inner .buttons {
+  grid-area: prnt;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 768px) {
   .app-inner {
     width: 100%;
-    gap: 6px 32px;
+    gap: 23px 32px;
     grid-template:
       "slds avi"
-      "slds btns"
-      / 1fr 220px;
+      "slds avi"
+      "btns btns"
+      ". prnt"
+      / 1fr 197px;
+  }
+
+  .app-inner .buttons {
+    justify-content: flex-end;
   }
 }
 .avatar-wrapper {
   grid-area: avi;
+  align-self: center;
 }
 
 .sliders-wrapper {
   grid-area: slds;
 }
 
-.header {
+/* .header {
   justify-self: center;
   max-width: var(--body-width);
   display: grid;
@@ -91,6 +115,13 @@ a:visited {
   padding-top: 24px;
   padding-left: 24px;
   padding-right: 24px;
+} */
+
+.copy {
+  grid-area: copy;
+  text-align: center;
+  max-width: var(--body-width);
+  justify-self: center;
 }
 
 .logo {
@@ -98,19 +129,19 @@ a:visited {
   justify-self: center;
 }
 
-.footer {
-  grid-area: footer;
-  display: flex;
+.header {
+  grid-area: header;
   background-color: var(--navy);
 }
 
-.footer-inner {
+.header-inner {
   max-width: var(--body-width);
   width: 80%;
   display: flex;
   margin: 0 auto;
   align-self: center;
   justify-content: space-between;
+  padding: 8px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -129,10 +160,25 @@ a:visited {
   color: white;
   padding: 12px 14px;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 .save-button,
 .save-button:visited,
 .print-button:visited {
   color: white;
+  font-weight: bold;
+}
+
+.save-button.blue {
+  color: var(--blue);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.buttons :first-child {
+  margin-right: 16px;
 }

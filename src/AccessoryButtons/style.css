@@ -2,7 +2,11 @@
   grid-area: btns;
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
+  background-color: var(--light-grey-1);
+  grid-template-columns: repeat(3, 48px);
+  padding: 16.5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .accs-btn {

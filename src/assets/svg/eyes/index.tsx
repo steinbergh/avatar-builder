@@ -9,12 +9,12 @@ import { ReactComponent as Eyes7 } from "./eyes-7.svg";
 import { ReactComponent as Eyes8 } from "./eyes-8.svg";
 
 export const eyes = [
-  <Eyes1 />,
-  <Eyes2 />,
-  <Eyes3 />,
-  <Eyes4 />,
-  <Eyes5 />,
-  <Eyes6 />,
-  <Eyes7 />,
-  <Eyes8 />,
-];
+  Eyes1,
+  Eyes2,
+  Eyes3,
+  Eyes4,
+  Eyes5,
+  Eyes6,
+  Eyes7,
+  Eyes8,
+].map((C, i) => <C key={`eyes-${i}`} />);

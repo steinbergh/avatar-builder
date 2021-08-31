@@ -13,8 +13,10 @@ type SliderProps = {
 
 // const getScale = (value: number, max: number) => value / max;
 
-const getValuePos = (w: number, vs: number) => (n: number) =>
-  w !== 0 ? Math.round((n / w) * (vs - 1)) : 0;
+const getValuePos = (w: number, vs: number) => (n: number) => {
+  console.log(w, vs, n);
+  return w !== 0 ? Math.round((n / w) * (vs - 1)) : 0;
+};
 
 const getPosFromValue = (w: number, vs: number) => (n: number) =>
   w !== 0 ? (w / (vs - 1)) * n : 0;
@@ -72,7 +74,7 @@ const Slider = ({ label, onChange, value, values }: SliderProps) => {
         ? (sliderBounds?.width / (values.length - 1)) * nextPos
         : 0;
 
-      api({
+      api.start({
         to: async (next) => {
           await next({
             x: active ? _x : nextXPos,

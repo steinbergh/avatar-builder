@@ -9,12 +9,12 @@ import { ReactComponent as Body7 } from "./body-7.svg";
 import { ReactComponent as Body8 } from "./body-8.svg";
 
 export const bodies = [
-  <Body1 />,
-  <Body2 />,
-  <Body3 />,
-  <Body4 />,
-  <Body5 />,
-  <Body6 />,
-  <Body7 />,
-  <Body8 />,
-];
+  Body1,
+  Body2,
+  Body3,
+  Body4,
+  Body5,
+  Body6,
+  Body7,
+  Body8,
+].map((C, i) => <C key={`body-${i}`} />);

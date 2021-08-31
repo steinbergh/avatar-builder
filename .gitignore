@@ -12,8 +12,8 @@
 /build
 
 # assets
-/public/img/*
-!/public/img/.gitkeep
+/uploads/img/*
+!/uploads/img/.gitkeep
 
 # misc
 .DS_Store

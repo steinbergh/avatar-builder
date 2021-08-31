@@ -9,12 +9,12 @@ import { ReactComponent as Hair7 } from "./hair-7.svg";
 import { ReactComponent as Hair8 } from "./hair-8.svg";
 
 export const hair = [
-  <Hair1 />,
-  <Hair2 />,
-  <Hair3 />,
-  <Hair4 />,
-  <Hair5 />,
-  <Hair6 />,
-  <Hair7 />,
-  <Hair8 />,
-];
+  Hair1,
+  Hair2,
+  Hair3,
+  Hair4,
+  Hair5,
+  Hair6,
+  Hair7,
+  Hair8,
+].map((C, i) => <C key={`hair-${i}`} />);
