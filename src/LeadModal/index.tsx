@@ -31,7 +31,7 @@ export const LeadModal = ({
         src={
           process.env.NODE_ENV === "development"
             ? `http://localhost:8888/img/${fileName}`
-            : `../uploads/img/${fileName}`
+            : `${process.env.PUBLIC_URL}/img/${fileName}`
         }
         alt="A hand drawn likeness of you!"
       />

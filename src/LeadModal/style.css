@@ -50,10 +50,51 @@
 
 @media print {
   * {
+    visibility: hidden;
+  }
+
+  body {
+    height: auto;
+  }
+
+  .App {
+    display: block;
+  }
+
+  .header,
+  .copy,
+  .buttons,
+  .sliders-wrapper,
+  .accs-btns {
     display: none;
   }
 
-  img#navigator {
-    display: block !important;
+  .app-inner {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .avatar-wrapper > * {
+    display: none;
+  }
+
+  .avatar-wrapper .avatar-border {
+    display: inline-block;
+    width: auto;
+    /* border: none; */
+  }
+
+  div#avatar {
+    width: 197px;
+    display: grid;
+  }
+
+  .avatar-wrapper .avatar-border,
+  div#avatar,
+  div#avatar * {
+    /* position: relative; */
+    visibility: visible !important;
+    /* border: none; */
   }
 }

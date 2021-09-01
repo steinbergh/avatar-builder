@@ -160,7 +160,7 @@ function App() {
           )}
         </div>
         <div className="buttons">
-          <button className="save-button blue" onClick={handleSavePhoto}>
+          <button className="save-button blu" onClick={handleSavePhoto}>
             {copy.buttons.saveAndEmail}
           </button>
           <button className="print-button" onClick={handleSavePhoto}>
