@@ -1,6 +1,11 @@
 <?php
 //Upload folder
-$target_dir = "./img/";
+$target_dir = "../wp-content/uploads/nvgtrs";
+
+if (!file_exists($target_dir)) {
+  mkdir($path, 0777, true);
+}
+
 $target_file = $target_dir . basename($_FILES["myFile"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
