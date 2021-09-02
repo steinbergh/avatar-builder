@@ -1,6 +1,6 @@
 <?php
 //Upload folder
-$target_dir = "../wp-content/uploads/nvgtrs";
+$target_dir = "../wp-content/uploads/nvgtrs/";
 
 if (!file_exists($target_dir)) {
   mkdir($target_dir, 0777, true);
