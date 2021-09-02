@@ -12,6 +12,18 @@
   transition: fill 250ms ease-in-out;
   fill: var(--hair-color);
 }
+.accessory-1,
+.accessory-3,
+.accessory-2 {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+
+.accessory-active-1 .accessory-1,
+.accessory-active-2 .accessory-3,
+.accessory-active-3 .accessory-2 {
+  opacity: 1;
+}
 
 .c-shirt {
   transition: fill 250ms ease-in-out;

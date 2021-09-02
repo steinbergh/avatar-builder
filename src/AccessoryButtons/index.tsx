@@ -1,7 +1,6 @@
-import { getPart, PartsKeys } from "Parts";
-import React, { useRef, useState } from "react";
 import "./style.css";
 import classnames from "classnames";
+import { accessoriesBtns } from "../assets/svg/accessory-buttons";
 
 type AccessoryButtonProps = {
   values: number[];
@@ -24,7 +23,7 @@ export const AccessoryButtons = ({
             active: activeValues.indexOf(value) > -1,
           })}
         >
-          {getPart(PartsKeys.ACCESSORY, value)}
+          {accessoriesBtns[value]}
         </div>
       ))}
     </div>

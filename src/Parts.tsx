@@ -7,6 +7,7 @@ import { faces } from "./assets/svg/face";
 import { noses } from "./assets/svg/nose";
 import { hair } from "./assets/svg/hair";
 import React from "react";
+import { accessories } from "assets/svg/accessory";
 
 export enum PartsKeys {
   BG = "bg",
@@ -33,10 +34,7 @@ type PartsKeysParams = Exclude<
 type PartsMap = Record<PartsKeysParams, React.ReactNode[]>;
 
 const partsMap = (key: PartsKeys, index: number): PartsMap => ({
-  accessory: [
-    <Accessory1 key={`${key}-${index}`} />,
-    <Accessory2 key={`${key}-${index}`} />,
-  ],
+  accessory: accessories,
   body: bodies,
   eyes: eyes,
   face: faces,

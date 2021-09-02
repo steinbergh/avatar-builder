@@ -5,6 +5,7 @@ import { eyes } from "./assets/svg/eyes";
 import { faces } from "./assets/svg/face";
 import { noses } from "./assets/svg/nose";
 import { hair } from "./assets/svg/hair";
+import { accessories } from "./assets/svg/accessory";
 
 export const skinTones = [
   "#f9d0b4",
@@ -64,7 +65,13 @@ export const config = {
       printNow: "Print Sticker",
     },
   },
-  buttons: [{ label: "Accessories", values: [0, 1], key: PartsKeys.ACCESSORY }],
+  buttons: [
+    {
+      label: "Accessories",
+      values: accessories.map((_, i) => i),
+      key: PartsKeys.ACCESSORY,
+    },
+  ],
   sliders: [
     {
       label: "Skin Tone",

@@ -13,31 +13,35 @@ import axios from "axios";
 import { toBlob } from "html-to-image";
 import { NameInput } from "NameInput";
 import { LeadModal } from "LeadModal";
+import classnames from "classnames";
+import { accessories } from "assets/svg/accessory";
 
 const { copy, sliders, buttons } = config;
 
-const avatar: AvatarState = {
-  bg: 0,
-  body: 0,
-  face: 0,
-  hair: 0,
-  eyes: 0,
-  nose: 0,
-  mouth: 0,
-  accessory: [],
-  skinTone: 0,
-  shirtColor: 0,
-  hairColor: 0,
-};
+// const avatar: AvatarState = {
+//   bg: 0,
+//   body: 0,
+//   face: 0,
+//   hair: 0,
+//   eyes: 0,
+//   nose: 0,
+//   mouth: 0,
+//   accessory: [],
+//   skinTone: 0,
+//   shirtColor: 0,
+//   hairColor: 0,
+// };
+
+const initialState = randomizedAvatar();
 
 function App() {
-  const [state, setState] = useState<AvatarState>(() => avatar);
+  const [state, setState] = useState<AvatarState>(initialState);
   const [fileName, setFileName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [leadName, setLeadName] = useState("");
+  const [leadName, setLeadName] = useState<string | null>("");
 
   const aviRef = useRef<HTMLDivElement>(null);
-  const accessories = state[PartsKeys.ACCESSORY];
+  const activeAccessories = state[PartsKeys.ACCESSORY];
 
   const handleSavePhoto = useCallback(() => {
     if (aviRef.current === null) {
@@ -94,11 +98,12 @@ function App() {
       });
   }, [aviRef, state, fileName]);
 
+  console.log(buttons);
   return (
     <div id="appRoot" className="App">
       <LeadModal
         isOpen={modalOpen}
-        leadName="Placeholder"
+        leadName={leadName || "there"}
         fileName={fileName}
         onClose={() => setModalOpen(false)}
       />
@@ -122,10 +127,21 @@ function App() {
         ))}
       </div>
       <div className="app-inner">
-        <div className="avatar-wrapper">
+        <div
+          className={classnames("avatar-wrapper", {
+            "accessory-active-1": activeAccessories.includes(0),
+            "accessory-active-2": activeAccessories.includes(1),
+            "accessory-active-3": activeAccessories.includes(2),
+          })}
+        >
           <RandomizeButton onClick={() => setState(randomizedAvatar())} />
           <Avatar ref={aviRef} {...state} />
-          <NameInput />
+          <NameInput
+            setLeadName={(value) => {
+              setLeadName(value);
+            }}
+            leadName={leadName || ""}
+          />
         </div>
         {buttons.map(
           ({ key, values }) =>
@@ -133,14 +149,14 @@ function App() {
               <AccessoryButtons
                 key={PartsKeys.ACCESSORY}
                 values={values}
-                activeValues={accessories}
+                activeValues={activeAccessories}
                 onClick={(accValue) => {
                   setState({
                     ...state,
                     accessory:
-                      accessories.indexOf(accValue) > -1
-                        ? accessories.filter((acc) => acc !== accValue)
-                        : [...accessories, accValue],
+                      activeAccessories.indexOf(accValue) > -1
+                        ? activeAccessories.filter((acc) => acc !== accValue)
+                        : [...activeAccessories, accValue],
                   });
                 }}
               />

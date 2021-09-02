@@ -3,7 +3,7 @@
 $target_dir = "../wp-content/uploads/nvgtrs";
 
 if (!file_exists($target_dir)) {
-  mkdir($path, 0777, true);
+  mkdir($target_dir, 0777, true);
 }
 
 $target_file = $target_dir . basename($_FILES["myFile"]["name"]);

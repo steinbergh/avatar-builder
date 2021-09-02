@@ -8,8 +8,9 @@ import { eyes } from "../assets/svg/eyes";
 import { faces } from "../assets/svg/face";
 import { noses } from "../assets/svg/nose";
 import { hair } from "../assets/svg/hair";
+import { accessories } from "assets/svg/accessory";
 
-const accessoryIds = [0, 1];
+const accessoryIds = accessories.map((_, i) => i);
 const randomBg = uniqueRandom(0, bgColors.length - 1);
 const randomSkinTone = uniqueRandom(0, skinTones.length - 1);
 const randomShirtColor = uniqueRandom(0, shirtColors.length - 1);
@@ -30,7 +31,7 @@ export const randomizedAvatar = () => ({
   nose: randomNose(),
   mouth: randomMouth(),
   accessory: randomItem
-    .multiple(accessoryIds, randomInteger(0, 2))
+    .multiple(accessoryIds, randomInteger(0, accessories.length))
     .filter((item, index) => accessoryIds.indexOf(item) === index),
   skinTone: randomSkinTone(),
   shirtColor: randomShirtColor(),

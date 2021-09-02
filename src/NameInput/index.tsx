@@ -1,9 +1,13 @@
 import React from "react";
 import "./styles.css";
 
-export const NameInput = () => {
-  const [name, setName] = React.useState("");
-
+export const NameInput = ({
+  setLeadName,
+  leadName,
+}: {
+  setLeadName: (value: string) => void;
+  leadName: string;
+}) => {
   return (
     <div className="name-input-wrapper">
       <label className="name-input-label">Hello, my name is</label>
@@ -11,10 +15,10 @@ export const NameInput = () => {
         className="name-input"
         type="text"
         onChange={(e) => {
-          setName(e.target.value);
+          setLeadName(e.target.value);
         }}
         placeholder="Your Name"
-        value={name}
+        value={leadName}
       ></input>
     </div>
   );
