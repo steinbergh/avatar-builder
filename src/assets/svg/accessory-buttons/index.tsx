@@ -7,6 +7,7 @@ import { ReactComponent as AccessoryBtn5 } from "./btn-accessory-5.svg";
 import { ReactComponent as AccessoryBtn6 } from "./btn-accessory-6.svg";
 import { ReactComponent as AccessoryBtn7 } from "./btn-accessory-7.svg";
 import { ReactComponent as AccessoryBtn8 } from "./btn-accessory-8.svg";
+import { ReactComponent as AccessoryBtn9 } from "./btn-accessory-9.svg";
 
 export const accessoriesBtns = [
   AccessoryBtn1,
@@ -17,4 +18,5 @@ export const accessoriesBtns = [
   AccessoryBtn6,
   AccessoryBtn7,
   AccessoryBtn8,
+  AccessoryBtn9,
 ].map((C, i) => C && <C key={`accessory-${i}`} />);

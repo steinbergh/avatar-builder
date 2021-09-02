@@ -134,14 +134,14 @@ function App() {
             "accessory-active-3": activeAccessories.includes(2),
           })}
         >
-          <RandomizeButton onClick={() => setState(randomizedAvatar())} />
-          <Avatar ref={aviRef} {...state} />
           <NameInput
             setLeadName={(value) => {
               setLeadName(value);
             }}
             leadName={leadName || ""}
           />
+          <Avatar ref={aviRef} {...state} />
+          <RandomizeButton onClick={() => setState(randomizedAvatar())} />
         </div>
         {buttons.map(
           ({ key, values }) =>

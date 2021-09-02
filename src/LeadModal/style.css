@@ -53,8 +53,20 @@
     visibility: hidden;
   }
 
+  @page {
+    size: auto;
+    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   body {
     height: auto;
+    margin: 0;
+    color: #000;
+    background-color: #fff;
+    padding-top: 72px;
+    padding-bottom: 72px;
   }
 
   .App {
@@ -86,7 +98,7 @@
   }
 
   div#avatar {
-    width: 197px;
+    width: 50mm;
     display: grid;
   }
 
