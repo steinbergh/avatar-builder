@@ -20,9 +20,12 @@
 }
 
 .accessory-active-1 .accessory-1,
-.accessory-active-2 .accessory-3,
 .accessory-active-3 .accessory-2 {
   opacity: 1;
+}
+
+.accessory-active-2 .accessory-3 {
+  opacity: 0.65;
 }
 
 .c-shirt {
@@ -31,7 +34,7 @@
 }
 
 .avatar-border {
-  border: 2px solid var(--light-grey-2);
+  border: 1px solid var(--light-grey-2);
   border-radius: 4px;
 }
 
@@ -60,7 +63,7 @@
 
 .conference-logo {
   grid-area: conf;
-  width: 80%;
+  width: 95%;
   justify-self: end;
 }
 

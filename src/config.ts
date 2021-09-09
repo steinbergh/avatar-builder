@@ -58,11 +58,11 @@ export const config = {
   copy: {
     title: "Commission tracking made for you",
     body: [
-      "Whether you’re a sales rep, leader, in Finance and Accounting, our solution is as custom, and creative as you. Create your own avatar to experience what it’s like to build comp plans, and forecast in QuotaPath.",
+      "Create your avatar to experience what it’s like to build comp plans and forecast sales in QuotaPath – easy as a few clicks!  Whether you’re a sales rep, sales leader, revenue operations, or finance, our solution is as custom and creative as you are.",
     ],
     buttons: {
       saveAndEmail: "Email",
-      printNow: "Print Sticker",
+      printNow: "Print Sticker →",
     },
   },
   buttons: [
@@ -104,7 +104,6 @@ export const config = {
       values: new Array(mouths.length),
       key: PartsKeys.MOUTH,
     },
-    // { label: "Facial Hair", values: new Array(2), key: "facial-hair" },
     { label: "Body", values: new Array(bodies.length), key: PartsKeys.BODY },
     {
       label: "Shirt Color",

@@ -1,15 +1,25 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { reasonOptions, roleOptions, interestOptions } from "./consts";
+import { submitHubspotForm } from "./form";
+import "./styles.css";
 
 type FormData = {
   role: string;
   company: string;
   email: string;
-  reason: string;
-  personalInterest: string;
+  goal: string;
+  interest: string;
 };
 
-export const LeadForm = () => {
+export const LeadForm = ({
+  firstname,
+  lastname,
+}: {
+  firstname: string;
+  lastname?: string;
+}) => {
   const {
     register,
     handleSubmit,
@@ -17,56 +27,70 @@ export const LeadForm = () => {
   } = useForm<FormData>();
   const onSubmit = handleSubmit((data) => {
     window.print();
+    submitHubspotForm({ firstname, lastname, ...data });
     console.log(data);
   });
 
   console.log("errors");
   return (
-    <form onSubmit={onSubmit}>
+    <form className="lead-form" onSubmit={onSubmit}>
       <p>
-        {"I'm a "}
+        {"I'm "}
         <select {...register("role")}>
-          <option value="Rep">Rep</option>
-          <option value="Sales Manager">Sales Manager</option>
-          <option value="Sales Operations">Sales Operations</option>
-          <option value="Finance, Accounting, or HR">
-            Finance, Accounting, or HR
+          <option value="" disabled selected>
+            Select one
           </option>
-          <option value="CEO, COO or Founder">CEO, COO or Founder</option>
-          <option value="Other">Other</option>
+          {roleOptions.map(({ label, value }, i) => (
+            <option value={value} key={`${label}-${i}`}>
+              {label}
+            </option>
+          ))}
         </select>
         {" at "}
-        <input type="text" {...register("company")}></input>
+        <input
+          className="text-input text-input__inline"
+          type="text"
+          placeholder="Your Company"
+          {...register("company")}
+        ></input>
         {"."}
       </p>
       <p>
-        {"I'm at SaaStr to "}
-        <select {...register("reason")}>
-          <option value="learn from the best">learn from the best</option>
-          <option value="discover new technology">
-            discover new technology
+        {"My main goal at SaaStr is to "}
+        <select {...register("goal")}>
+          <option value="" disabled selected>
+            Select one
           </option>
-          <option value="build a stronger team">build a stronger team</option>
-          <option value="have fun">have fun</option>
+          {reasonOptions.map(({ label, value }, i) => (
+            <option value={value} key={`${label}-${i}`}>
+              {label}
+            </option>
+          ))}
         </select>
         {"."}
       </p>
       <p>
-        {"Personally, I love talking about "}
-        <select {...register("personalInterest")}>
-          <option value="my dog(s)">{"my dog(s)"}</option>
-          <option value="my kid(s)">{"my kid(s)"}</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
-          <option value="food">food</option>
+        {"If you really want to get me talking, ask me about "}
+        <select {...register("interest")}>
+          <option value="" disabled selected>
+            Select one
+          </option>
+          {interestOptions.map(({ label, value }, i) => (
+            <option value={value} key={`${label}-${i}`}>
+              {label}
+            </option>
+          ))}
         </select>
         {"."}
       </p>
-      <div>
-        <label htmlFor="email">
-          {"Enter your email to receive your avatar for download."}
-        </label>
-        <input type="email" {...register("email")}></input>
+      <div className="email-contain">
+        <label htmlFor="email">{"Get my digital avatar."}</label>
+        <input
+          className="text-input"
+          type="email"
+          placeholder="Your Work Email"
+          {...register("email")}
+        ></input>
       </div>
       <button className="print-button">Print Now</button>
     </form>

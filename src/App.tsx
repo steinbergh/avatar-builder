@@ -14,7 +14,6 @@ import { toBlob } from "html-to-image";
 import { NameInput } from "NameInput";
 import { LeadModal } from "LeadModal";
 import classnames from "classnames";
-import { accessories } from "assets/svg/accessory";
 
 const { copy, sliders, buttons } = config;
 

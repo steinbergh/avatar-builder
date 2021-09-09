@@ -3,7 +3,7 @@ import { skinTones, bgColors, shirtColors, hairColors } from "../config";
 import { getPart, PartsKeys } from "../Parts";
 import { AvatarState } from "types";
 import { useSpring, animated } from "react-spring";
-import SaaStrLogo from "assets/SaaStrBlue.png";
+import { ReactComponent as SaaStrLogo } from "assets/svg/lo_saastr-2021.svg";
 import { ReactComponent as QPLogo } from "assets/svg/logo-dark.svg";
 import "./style.css";
 
@@ -43,11 +43,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarState>(
             )}
           </div>
           <QPLogo className="qp-logo" />
-          <img
-            className="conference-logo"
-            src={SaaStrLogo}
-            alt="the SaaStr Logo"
-          />
+          <SaaStrLogo className="conference-logo" />
         </div>
       </div>
     );

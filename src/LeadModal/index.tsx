@@ -36,8 +36,8 @@ export const LeadModal = ({
         alt="A hand drawn likeness of you!"
       />
       <h1>{`Hi ${leadName}, tell us what brought you to SaaStr?`}</h1>
-      <LeadForm />
-      <button onClick={onClose}>Close</button>
+      <LeadForm firstname={leadName} />
+      {/* <button onClick={onClose}>Close</button> */}
     </ReactModal>
   );
 };

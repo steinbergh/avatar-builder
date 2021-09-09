@@ -1,0 +1,76 @@
+.lead-form input[type="text"],
+.lead-form select {
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  box-shadow: none;
+  color: var(--dark-grey);
+  font-weight: bold;
+  border-bottom: 1px solid #b6c7d4;
+}
+
+.lead-form input[type="text"]::placeholder {
+  color: var(--dark-grey);
+}
+
+.lead-form input[type="text"]:focus::placeholder {
+  color: transparent;
+}
+
+.lead-form p {
+  font-size: 18px;
+  color: var(--dark-grey);
+}
+
+.lead-form p {
+  margin-top: 10px;
+}
+
+.lead-form h1 {
+  font-size: 24px;
+}
+.email-contain {
+  display: block;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.email-contain {
+  margin-top: 40px;
+}
+
+.email-contain > * {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.email-contain > * + * {
+  margin-top: 15px;
+}
+
+.email-contain input {
+  border: 1px solid #b6c7d4;
+  border-radius: 4px;
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+  text-align: center;
+  font-size: 18px;
+  padding: 8px;
+}
+.email-contain input::placeholder {
+  color: #b6c7d4;
+}
+
+.email-contain input:focus::placeholder {
+  color: transparent;
+}
+
+.lead-form .print-button {
+  width: 100%;
+  max-width: 256px;
+  display: block;
+  margin: 20px auto 0;
+}

@@ -1,5 +1,3 @@
-import { ReactComponent as Accessory1 } from "./assets/svg/accessory-1.svg";
-import { ReactComponent as Accessory2 } from "./assets/svg/accessory-2.svg";
 import { mouths } from "./assets/svg/mouth";
 import { bodies } from "./assets/svg/body";
 import { eyes } from "./assets/svg/eyes";
