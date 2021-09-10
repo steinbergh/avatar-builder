@@ -42,7 +42,7 @@
   padding: 10px;
   border-radius: 4px;
   background-color: var(--white);
-
+  position: relative;
   display: grid;
   gap: 8px 50px;
   align-items: center;
@@ -84,4 +84,8 @@
     content: "";
     clear: both;
   }
+}
+
+.role-badge {
+  position: absolute;
 }

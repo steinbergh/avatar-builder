@@ -36,4 +36,5 @@ export const randomizedAvatar = () => ({
   skinTone: randomSkinTone(),
   shirtColor: randomShirtColor(),
   hairColor: randomHairColor(),
+  badge: 0,
 });

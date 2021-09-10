@@ -36,11 +36,13 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarState>(
                 key !== "accessory" &&
                 key !== "shirtColor" &&
                 key !== "hairColor" &&
+                key !== "badge" &&
                 getPart(key, props[key])
             )}
             {props[PartsKeys.ACCESSORY].map((acc) =>
               getPart(PartsKeys.ACCESSORY, acc)
             )}
+            {getPart(PartsKeys.BADGE, props[PartsKeys.BADGE])}
           </div>
           <QPLogo className="qp-logo" />
           <SaaStrLogo className="conference-logo" />

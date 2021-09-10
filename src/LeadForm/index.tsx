@@ -28,10 +28,8 @@ export const LeadForm = ({
   const onSubmit = handleSubmit((data) => {
     window.print();
     submitHubspotForm({ firstname, lastname, ...data });
-    console.log(data);
   });
 
-  console.log("errors");
   return (
     <form className="lead-form" onSubmit={onSubmit}>
       <p>

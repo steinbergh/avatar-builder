@@ -6,6 +6,7 @@ import { noses } from "./assets/svg/nose";
 import { hair } from "./assets/svg/hair";
 import React from "react";
 import { accessories } from "assets/svg/accessory";
+import { badges } from "assets/svg/badge";
 
 export enum PartsKeys {
   BG = "bg",
@@ -19,6 +20,7 @@ export enum PartsKeys {
   SKIN_TONE = "skinTone",
   SHIRT_COLOR = "shirtColor",
   HAIR_COLOR = "hairColor",
+  BADGE = "badge",
 }
 
 type PartsKeysParams = Exclude<
@@ -39,6 +41,7 @@ const partsMap = (key: PartsKeys, index: number): PartsMap => ({
   hair: hair,
   mouth: mouths,
   nose: noses,
+  badge: badges,
 });
 
 export const getPart = (key: PartsKeysParams, index: number) =>

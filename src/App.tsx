@@ -14,6 +14,7 @@ import { toBlob } from "html-to-image";
 import { NameInput } from "NameInput";
 import { LeadModal } from "LeadModal";
 import classnames from "classnames";
+import { RoleDropDown } from "RoleDropDown";
 
 const { copy, sliders, buttons } = config;
 
@@ -97,7 +98,6 @@ function App() {
       });
   }, [aviRef, state, fileName]);
 
-  console.log(buttons);
   return (
     <div id="appRoot" className="App">
       <LeadModal
@@ -139,6 +139,12 @@ function App() {
             }}
             leadName={leadName || ""}
           />
+          <RoleDropDown
+            role={state.badge}
+            setRole={(badgeNumber) =>
+              setState({ ...state, [PartsKeys.BADGE]: badgeNumber })
+            }
+          />
           <Avatar ref={aviRef} {...state} />
           <RandomizeButton onClick={() => setState(randomizedAvatar())} />
         </div>
@@ -175,7 +181,7 @@ function App() {
           )}
         </div>
         <div className="buttons">
-          <button className="save-button blu" onClick={handleSavePhoto}>
+          <button className="save-button blue" onClick={handleSavePhoto}>
             {copy.buttons.saveAndEmail}
           </button>
           <button className="print-button" onClick={handleSavePhoto}>

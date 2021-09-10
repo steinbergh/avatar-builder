@@ -14,7 +14,6 @@ type SliderProps = {
 // const getScale = (value: number, max: number) => value / max;
 
 const getValuePos = (w: number, vs: number) => (n: number) => {
-  console.log(w, vs, n);
   return w !== 0 ? Math.round((n / w) * (vs - 1)) : 0;
 };
 
