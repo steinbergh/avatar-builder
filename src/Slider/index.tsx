@@ -5,6 +5,7 @@ import { useDrag } from "react-use-gesture";
 import useBoundingclientrect from "@rooks/use-boundingclientrect";
 
 type SliderProps = {
+  Icon?: React.ReactNode;
   label: string;
   values: unknown[];
   onChange: (value: number) => void;
@@ -20,7 +21,7 @@ const getValuePos = (w: number, vs: number) => (n: number) => {
 const getPosFromValue = (w: number, vs: number) => (n: number) =>
   w !== 0 ? (w / (vs - 1)) * n : 0;
 
-const Slider = ({ label, onChange, value, values }: SliderProps) => {
+const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
   const [inputValue, setInputValue] = useState(0);
   const [touchDown, setTouchDown] = useState(false);
 
@@ -91,9 +92,14 @@ const Slider = ({ label, onChange, value, values }: SliderProps) => {
     }
   );
 
+  console.log();
+
   return (
     <div className="slider">
-      <animated.label htmlFor={label}>{label}</animated.label>
+      <animated.label htmlFor={label}>
+        <span className="icon">{Icon}</span>
+        {label}
+      </animated.label>
       <input
         ref={sliderRef}
         type="range"
@@ -105,6 +111,20 @@ const Slider = ({ label, onChange, value, values }: SliderProps) => {
           onChange(Number(e.target.value));
         }}
       ></input>
+      <div className="ticks">
+        {[...new Array(values.length - 1)].map(
+          (_, i) =>
+            i !== 0 &&
+            1 !== values.length - 1 && (
+              <span
+                // style={{ left: `${(100 / values.length) * i}%` }}
+                className="tick-mark"
+                key={`${label}-tick-${i}`}
+              ></span>
+            )
+        )}
+      </div>
+
       <animated.div
         {...bind()}
         style={{ x, scale }}

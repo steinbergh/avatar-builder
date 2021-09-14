@@ -3,6 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { reasonOptions, roleOptions, interestOptions } from "./consts";
 import { submitHubspotForm } from "./form";
+import { avatarReferral } from "./referral";
 import "./styles.css";
 
 type FormData = {
@@ -16,9 +17,11 @@ type FormData = {
 export const LeadForm = ({
   firstname,
   lastname,
+  photoUrl,
 }: {
   firstname: string;
   lastname?: string;
+  photoUrl: string;
 }) => {
   const {
     register,
@@ -28,6 +31,15 @@ export const LeadForm = ({
   const onSubmit = handleSubmit((data) => {
     window.print();
     submitHubspotForm({ firstname, lastname, ...data });
+    avatarReferral({
+      firstName: firstname,
+      challenge: data.role,
+      email: data.email,
+      workspaceName: data.company,
+      photoUrl,
+      interest: data.interest,
+      role: data.role,
+    });
   });
 
   return (

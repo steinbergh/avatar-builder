@@ -6,6 +6,18 @@ import { faces } from "./assets/svg/face";
 import { noses } from "./assets/svg/nose";
 import { hair } from "./assets/svg/hair";
 import { accessories } from "./assets/svg/accessory";
+import {
+  SliderFace,
+  SliderBackground,
+  SliderBody,
+  SliderEyes,
+  SliderHair,
+  SliderHairColor,
+  SliderMouth,
+  SliderNose,
+  SliderShirt,
+  SliderSkin,
+} from "./assets/svg/slider-icons";
 
 export const skinTones = [
   "#f9d0b4",
@@ -77,43 +89,61 @@ export const config = {
       label: "Skin Tone",
       values: new Array(skinTones.length),
       key: PartsKeys.SKIN_TONE,
+      Icon: <SliderSkin />,
     },
     {
       label: "Face Shape",
       values: new Array(faces.length),
       key: PartsKeys.FACE,
+      Icon: <SliderFace />,
     },
     {
       label: "Hair Style",
       values: new Array(hair.length),
       key: PartsKeys.HAIR,
+      Icon: <SliderHair />,
     },
     {
       label: "Hair Color",
       values: new Array(hairColors.length),
       key: PartsKeys.HAIR_COLOR,
+      Icon: <SliderHairColor />,
     },
     {
       label: "Eyes & Brows",
       values: new Array(eyes.length),
       key: PartsKeys.EYES,
+      Icon: <SliderEyes />,
     },
-    { label: "Nose", values: new Array(noses.length), key: PartsKeys.NOSE },
+    {
+      label: "Nose",
+      values: new Array(noses.length),
+      key: PartsKeys.NOSE,
+      Icon: <SliderNose />,
+    },
     {
       label: "Mouth",
       values: new Array(mouths.length),
       key: PartsKeys.MOUTH,
+      Icon: <SliderMouth />,
     },
-    { label: "Body", values: new Array(bodies.length), key: PartsKeys.BODY },
+    {
+      label: "Body",
+      values: new Array(bodies.length),
+      key: PartsKeys.BODY,
+      Icon: <SliderBody />,
+    },
     {
       label: "Shirt Color",
       values: new Array(shirtColors.length),
       key: PartsKeys.SHIRT_COLOR,
+      Icon: <SliderShirt />,
     },
     {
       label: "Background",
       values: new Array(bgColors.length),
       key: PartsKeys.BG,
+      Icon: <SliderBackground />,
     },
   ],
 };

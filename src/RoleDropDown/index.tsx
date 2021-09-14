@@ -8,6 +8,7 @@ const roles = [
   "Product & Engineering",
   "Finance & Ops",
   "Sales & Account Management",
+  "Investor",
 ];
 
 export const RoleDropDown = ({

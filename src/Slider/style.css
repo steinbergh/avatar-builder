@@ -2,6 +2,7 @@
   width: 100%;
   display: inline-grid;
   justify-content: space-between;
+  align-items: center;
   grid-gap: 24px;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -31,6 +32,18 @@
   padding-bottom: 6px;
 }
 
+.slider .icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.slider .icon svg {
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+}
+
 @media only screen and (min-width: 768px) {
   .slider lable {
     padding-bottom: 0;
@@ -41,7 +54,7 @@
   box-sizing: border-box;
   height: 6px !important;
   padding: 0 !important;
-
+  margin: 0 !important;
   border: 0px solid transparent !important;
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
   width: 100%; /* Specific width is required for Firefox. */
@@ -56,10 +69,29 @@
   left: -13px;
   background-color: var(--blue);
   cursor: pointer;
-  margin-top: -8px;
+  /* smargin-top: -8px; */
   border-radius: 100%;
   grid-area: slider;
   touch-action: none;
+}
+
+.ticks {
+  position: absolute;
+  grid-area: slider;
+  width: 100%;
+  height: 6px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tick-mark {
+  position: relative;
+  pointer-events: none;
+  width: 1px;
+  background-color: #b6c7d4;
+  height: 6px;
+  width: 2px;
+  transform: translateX(-50%);
 }
 
 input::-webkit-slider-thumb {
