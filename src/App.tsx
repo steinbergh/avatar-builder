@@ -15,6 +15,8 @@ import { NameInput } from "NameInput";
 import { LeadModal } from "LeadModal";
 import classnames from "classnames";
 import { RoleDropDown } from "RoleDropDown";
+import { LandingPageContent } from "LandingPageContent";
+import scrollRevealInit from "./utils/scrollReveal";
 
 const { copy, sliders, buttons } = config;
 
@@ -33,7 +35,7 @@ const { copy, sliders, buttons } = config;
 // };
 
 const initialState = randomizedAvatar();
-
+scrollRevealInit();
 function App() {
   const [state, setState] = useState<AvatarState>(initialState);
   const [fileName, setFileName] = useState("");
@@ -189,6 +191,7 @@ function App() {
           </button>
         </div>
       </div>
+      <LandingPageContent />
     </div>
   );
 }

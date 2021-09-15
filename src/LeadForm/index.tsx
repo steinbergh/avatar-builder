@@ -29,21 +29,20 @@ export const LeadForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  console.log(!!errors.interest);
+
   const onSubmit = handleSubmit(
     (data) => {
-      // console.log(errors);
-      // window.print();
-      // submitHubspotForm({ firstname, lastname, ...data });
-      // avatarReferral({
-      //   firstName: firstname,
-      //   challenge: data.role,
-      //   email: data.email,
-      //   workspaceName: data.company,
-      //   photoUrl,
-      //   interest: data.interest,
-      //   role: data.role,
-      // });
+      window.print();
+      submitHubspotForm({ firstname, lastname, ...data });
+      avatarReferral({
+        firstName: firstname,
+        challenge: data.role,
+        email: data.email,
+        workspaceName: data.company,
+        photoUrl,
+        interest: data.interest,
+        role: data.role,
+      });
     },
     (errors, e) => console.log(errors, e)
   );
