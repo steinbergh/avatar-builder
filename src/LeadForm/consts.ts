@@ -1,7 +1,8 @@
 export const roleOptions = [
+  { value: "", label: "Select one" },
   {
     value: "Executive Leadership",
-    Label: "Executive Leadership",
+    label: "Executive Leadership",
   },
   {
     value: "Sales Rep",
@@ -34,6 +35,7 @@ export const roleOptions = [
 ];
 
 export const reasonOptions = [
+  { value: "", label: "Select one" },
   {
     value: "learn from the best",
     label: "learn from the best",
@@ -61,6 +63,7 @@ export const reasonOptions = [
 ];
 
 export const interestOptions = [
+  { value: "", label: "Select one" },
   {
     value: "my pets(s)",
     label: "my pets(s)",

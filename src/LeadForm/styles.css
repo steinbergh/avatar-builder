@@ -7,6 +7,7 @@
   box-shadow: none;
   color: var(--dark-grey);
   font-weight: bold;
+  line-height: initial;
   border-bottom: 1px solid #b6c7d4;
 }
 
@@ -73,4 +74,27 @@
   max-width: 256px;
   display: block;
   margin: 20px auto 0;
+}
+
+.lead-form select {
+  padding-right: 24px;
+}
+.lead-form .select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.lead-form .select-wrap:after {
+  content: "";
+  background-image: url("../assets/dropdown-arrow_1.png");
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 13px;
+  width: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-25%, -25%);
+  pointer-events: none;
 }

@@ -33,15 +33,16 @@
 }
 
 .slider .icon {
-  display: inline-block;
+  display: inline;
   vertical-align: middle;
   margin-right: 6px;
 }
 
 .slider .icon svg {
   width: 24px;
-  height: 24px;
-  padding: 2px;
+  /* height: 24px; */
+  padding: 0 2px;
+  vertical-align: middle;
 }
 
 @media only screen and (min-width: 768px) {

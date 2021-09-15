@@ -1,14 +1,15 @@
 import React from "react";
-// import "./styles.css";
+import "./styles.css";
 
 const roles = [
-  "What do you do?",
+  "Select One",
   "Founder",
   "Marketing & Partnerships",
   "Product & Engineering",
   "Finance & Ops",
   "Sales & Account Management",
   "Investor",
+  "None",
 ];
 
 export const RoleDropDown = ({
@@ -20,18 +21,23 @@ export const RoleDropDown = ({
 }) => {
   return (
     <div className="role-dd-wrapper">
-      <select
-        className="role-dd"
-        onChange={(e) => {
-          setRole(Number(e.target.value));
-        }}
-        value={role}
-        defaultValue={0}
-      >
-        {roles.map((role, i) => (
-          <option value={i}>{role}</option>
-        ))}
-      </select>
+      <label>{"What do you do?"}</label>
+      <div className="role-dd">
+        <select
+          onChange={(e) => {
+            const value = Number(e.target.value);
+            setRole(value === roles.length ? 0 : value);
+          }}
+          value={role}
+          defaultValue={0}
+        >
+          {roles.map((role, i) => (
+            <option value={i} disabled={i === 0}>
+              {role}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

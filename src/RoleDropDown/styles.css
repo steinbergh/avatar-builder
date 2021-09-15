@@ -1,0 +1,60 @@
+.role-dd-wrapper {
+  width: 100%;
+  display: inline-grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-gap: 24px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "label"
+    "dd";
+  margin: 16px 0;
+  width: 100%;
+  position: relative;
+  line-height: 0 !important;
+}
+@media only screen and (min-width: 768px) {
+  .role-dd-wrapper {
+    grid-gap: 16px;
+    grid-template-columns: 0.35fr 0.65fr;
+    grid-template-areas: "label dd";
+  }
+}
+
+.role-dd-wrapper label {
+  grid-area: label;
+}
+
+.role-dd-wrapper select {
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  box-shadow: none;
+  color: var(--dark-grey);
+  height: 100%;
+  line-height: initial;
+  width: 100%;
+  border-bottom: 1px solid #b6c7d4;
+}
+
+.role-dd {
+  grid-area: dd;
+  width: 100%;
+  position: relative;
+}
+
+.role-dd:after {
+  content: "";
+  background-image: url("../assets/dropdown-arrow_1.png");
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 13px;
+  width: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}

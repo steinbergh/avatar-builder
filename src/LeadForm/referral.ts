@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DEV_URL = "https://app.quotapath.dev/api/auth/avatar-referral/";
+const DEV_URL = "http://localhost:8010/proxy/api/auth/avatar-referral/";
 
 type ReferralData = {
   challenge: string;

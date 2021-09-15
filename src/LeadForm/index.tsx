@@ -46,16 +46,15 @@ export const LeadForm = ({
     <form className="lead-form" onSubmit={onSubmit}>
       <p>
         {"I'm "}
-        <select {...register("role")}>
-          <option value="" disabled selected>
-            Select one
-          </option>
-          {roleOptions.map(({ label, value }, i) => (
-            <option value={value} key={`${label}-${i}`}>
-              {label}
-            </option>
-          ))}
-        </select>
+        <span className="select-wrap">
+          <select defaultValue="" {...register("role")}>
+            {roleOptions.map(({ label, value }, i) => (
+              <option value={value} key={`${label}-${i}`} disabled={i === 0}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </span>
         {" at "}
         <input
           className="text-input text-input__inline"
@@ -67,30 +66,33 @@ export const LeadForm = ({
       </p>
       <p>
         {"My main goal at SaaStr is to "}
-        <select {...register("goal")}>
-          <option value="" disabled selected>
-            Select one
-          </option>
-          {reasonOptions.map(({ label, value }, i) => (
-            <option value={value} key={`${label}-${i}`}>
-              {label}
-            </option>
-          ))}
-        </select>
+        <span className="select-wrap">
+          <select {...register("goal")}>
+            {reasonOptions.map(({ label, value }, i) => (
+              <option
+                defaultValue=""
+                value={value}
+                key={`${label}-${i}`}
+                disabled={i === 0}
+              >
+                {label}
+              </option>
+            ))}
+          </select>
+        </span>
         {"."}
       </p>
       <p>
         {"If you really want to get me talking, ask me about "}
-        <select {...register("interest")}>
-          <option value="" disabled selected>
-            Select one
-          </option>
-          {interestOptions.map(({ label, value }, i) => (
-            <option value={value} key={`${label}-${i}`}>
-              {label}
-            </option>
-          ))}
-        </select>
+        <span className="select-wrap">
+          <select defaultValue="" {...register("interest")}>
+            {interestOptions.map(({ label, value }, i) => (
+              <option value={value} key={`${label}-${i}`} disabled={i === 0}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </span>
         {"."}
       </p>
       <div className="email-contain">

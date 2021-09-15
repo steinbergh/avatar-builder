@@ -139,12 +139,6 @@ function App() {
             }}
             leadName={leadName || ""}
           />
-          <RoleDropDown
-            role={state.badge}
-            setRole={(badgeNumber) =>
-              setState({ ...state, [PartsKeys.BADGE]: badgeNumber })
-            }
-          />
           <Avatar ref={aviRef} {...state} />
           <RandomizeButton onClick={() => setState(randomizedAvatar())} />
         </div>
@@ -179,6 +173,12 @@ function App() {
                 />
               )
           )}
+          <RoleDropDown
+            role={state.badge}
+            setRole={(badgeNumber) =>
+              setState({ ...state, [PartsKeys.BADGE]: badgeNumber })
+            }
+          />
         </div>
         <div className="buttons">
           <button className="save-button blue" onClick={handleSavePhoto}>
