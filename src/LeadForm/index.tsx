@@ -5,6 +5,7 @@ import { reasonOptions, roleOptions, interestOptions } from "./consts";
 import { submitHubspotForm } from "./form";
 import { avatarReferral } from "./referral";
 import "./styles.css";
+import classnames from "classnames";
 
 type FormData = {
   role: string;
@@ -28,26 +29,35 @@ export const LeadForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  const onSubmit = handleSubmit((data) => {
-    window.print();
-    submitHubspotForm({ firstname, lastname, ...data });
-    avatarReferral({
-      firstName: firstname,
-      challenge: data.role,
-      email: data.email,
-      workspaceName: data.company,
-      photoUrl,
-      interest: data.interest,
-      role: data.role,
-    });
-  });
+  console.log(!!errors.interest);
+  const onSubmit = handleSubmit(
+    (data) => {
+      // console.log(errors);
+      // window.print();
+      // submitHubspotForm({ firstname, lastname, ...data });
+      // avatarReferral({
+      //   firstName: firstname,
+      //   challenge: data.role,
+      //   email: data.email,
+      //   workspaceName: data.company,
+      //   photoUrl,
+      //   interest: data.interest,
+      //   role: data.role,
+      // });
+    },
+    (errors, e) => console.log(errors, e)
+  );
 
   return (
     <form className="lead-form" onSubmit={onSubmit}>
       <p>
         {"I'm "}
-        <span className="select-wrap">
-          <select defaultValue="" {...register("role")}>
+        <span
+          className={classnames("select-wrap", {
+            error: errors.role,
+          })}
+        >
+          <select defaultValue="" {...register("role", { required: true })}>
             {roleOptions.map(({ label, value }, i) => (
               <option value={value} key={`${label}-${i}`} disabled={i === 0}>
                 {label}
@@ -57,24 +67,25 @@ export const LeadForm = ({
         </span>
         {" at "}
         <input
-          className="text-input text-input__inline"
+          className={classnames("text-input text-input__inline", {
+            error: errors.company,
+          })}
           type="text"
           placeholder="Your Company"
-          {...register("company")}
+          {...register("company", { required: true })}
         ></input>
         {"."}
       </p>
       <p>
         {"My main goal at SaaStr is to "}
-        <span className="select-wrap">
-          <select {...register("goal")}>
+        <span
+          className={classnames("select-wrap", {
+            error: errors.goal,
+          })}
+        >
+          <select defaultValue="" {...register("goal", { required: true })}>
             {reasonOptions.map(({ label, value }, i) => (
-              <option
-                defaultValue=""
-                value={value}
-                key={`${label}-${i}`}
-                disabled={i === 0}
-              >
+              <option value={value} key={`${label}-${i}`} disabled={i === 0}>
                 {label}
               </option>
             ))}
@@ -84,8 +95,12 @@ export const LeadForm = ({
       </p>
       <p>
         {"If you really want to get me talking, ask me about "}
-        <span className="select-wrap">
-          <select defaultValue="" {...register("interest")}>
+        <span
+          className={classnames("select-wrap", {
+            error: errors.interest,
+          })}
+        >
+          <select defaultValue="" {...register("interest", { required: true })}>
             {interestOptions.map(({ label, value }, i) => (
               <option value={value} key={`${label}-${i}`} disabled={i === 0}>
                 {label}
@@ -98,10 +113,12 @@ export const LeadForm = ({
       <div className="email-contain">
         <label htmlFor="email">{"Get my digital avatar."}</label>
         <input
-          className="text-input"
+          className={classnames("text-input", {
+            error: errors.email,
+          })}
           type="email"
           placeholder="Your Work Email"
-          {...register("email")}
+          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         ></input>
       </div>
       <button className="print-button">Print Now</button>

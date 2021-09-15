@@ -11,6 +11,15 @@
   border-bottom: 1px solid #b6c7d4;
 }
 
+.lead-form input[type="text"].error::placeholder,
+.lead-form input[type="text"].error,
+.lead-form .select-wrap.error select,
+.text-input.error,
+.text-input.error::placeholder {
+  border-color: red;
+  color: red;
+}
+
 .lead-form input[type="text"]::placeholder {
   color: var(--dark-grey);
 }
