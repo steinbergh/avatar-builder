@@ -73,6 +73,7 @@ export const config = {
       "Create your avatar to experience what it’s like to build comp plans and forecast sales in QuotaPath – easy as a few clicks!  Whether you’re a sales rep, sales leader, revenue operations, or finance, our solution is as custom and creative as you are.",
     ],
     buttons: {
+      saveAndSend: "Save & Send →",
       saveAndEmail: "Email",
       printNow: "Print Sticker →",
     },

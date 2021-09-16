@@ -16,6 +16,8 @@ import { LeadModal } from "LeadModal";
 import classnames from "classnames";
 import { RoleDropDown } from "RoleDropDown";
 import { LandingPageContent } from "LandingPageContent";
+import { Confetti } from "Confetti";
+import { openPopupWidget } from "react-calendly";
 
 const { copy, sliders, buttons } = config;
 
@@ -39,82 +41,95 @@ function App() {
   const [state, setState] = useState<AvatarState>(initialState);
   const [fileName, setFileName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [shouldPrint, setShouldPrint] = useState(false);
   const [leadName, setLeadName] = useState<string | null>("");
+  const [fireConfetti, setFireConfetti] = useState(false);
 
   const aviRef = useRef<HTMLDivElement>(null);
   const activeAccessories = state[PartsKeys.ACCESSORY];
 
-  const handleSavePhoto = useCallback(() => {
-    if (aviRef.current === null) {
-      return;
-    }
+  const handleSavePhoto = useCallback(
+    (_shouldPrint: boolean) => {
+      if (aviRef.current === null) {
+        return;
+      }
 
-    toBlob(aviRef.current, {
-      cacheBust: true,
-      // canvasWidth: 189.12,
-      // canvasHeight: 218.67,
-      // width: 192,
-      // height: 192,
-      pixelRatio: 2,
-    })
-      .then((blob) => {
-        if (!blob) return;
-        // const link = document.createElement("a");
-        const _fileName = Object.entries(state).reduce(
-          (prev, cur) =>
-            `${prev}${Array.isArray(cur[1]) ? cur[1].join("") : cur[1]}`,
-          ""
-        );
-
-        //if file name has already been set
-        if (fileName === _fileName) {
-          return;
-        }
-
-        // Create an object of formData
-        const formData = new FormData();
-
-        // Update the formData object
-        formData.append("myFile", blob, `${_fileName}.png`);
-
-        // Details of the uploaded file
-        // console.log(blob);
-
-        // Request made to the backend api
-        // Send formData object to my php file for save in folder
-        axios
-          .post(
-            process.env.NODE_ENV === "development"
-              ? "http://localhost:8888/upload.php"
-              : process.env.PUBLIC_URL + "/upload.php",
-            formData
-          )
-          .then(() => {
-            setFileName(`${_fileName}.png`);
-            setModalOpen(true);
-          });
+      toBlob(aviRef.current, {
+        cacheBust: true,
+        pixelRatio: 2,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [aviRef, state, fileName]);
+        .then((blob) => {
+          if (!blob) return;
+          // const link = document.createElement("a");
+          const _fileName = Object.entries(state).reduce(
+            (prev, cur) =>
+              `${prev}${Array.isArray(cur[1]) ? cur[1].join("") : cur[1]}`,
+            ""
+          );
+
+          //if file name has already been set
+          if (fileName === _fileName) {
+            return;
+          }
+
+          // Create an object of formData
+          const formData = new FormData();
+
+          // Update the formData object
+          formData.append("myFile", blob, `${_fileName}.png`);
+
+          // Details of the uploaded file
+          // console.log(blob);
+
+          // Request made to the backend api
+          // Send formData object to my php file for save in folder
+          axios
+            .post(
+              process.env.NODE_ENV === "development"
+                ? "http://localhost:8888/upload.php"
+                : process.env.PUBLIC_URL + "/upload.php",
+              formData
+            )
+            .then(() => {
+              setFileName(`${_fileName}.png`);
+              setFireConfetti(!fireConfetti);
+              setShouldPrint(_shouldPrint);
+              setModalOpen(true);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [aviRef, state, fileName, fireConfetti]
+  );
 
   return (
     <div id="appRoot" className="App">
       <LeadModal
         isOpen={modalOpen}
+        shouldPrint={shouldPrint}
         leadName={leadName || "there"}
         fileName={fileName}
-        onClose={() => setModalOpen(false)}
+        onClose={() => {
+          setFireConfetti(!fireConfetti);
+          setModalOpen(false);
+        }}
       />
       <div className="header">
         <div className="header-inner">
           <Logo className="logo" />
           <div className="buttons">
-            <button className="save-button" onClick={handleSavePhoto}>
+            <button
+              className="save-button"
+              onClick={() => handleSavePhoto(false)}
+            >
               {copy.buttons.saveAndEmail}
             </button>
-            <button className="print-button" onClick={handleSavePhoto}>
+            <button
+              className="print-button"
+              onClick={() => handleSavePhoto(true)}
+            >
               {copy.buttons.printNow}
             </button>
           </div>
@@ -182,15 +197,37 @@ function App() {
           />
         </div>
         <div className="buttons">
-          <button className="save-button blue" onClick={handleSavePhoto}>
+          <button
+            className="save-button blue save-button--mobile"
+            onClick={() => handleSavePhoto(false)}
+          >
+            {copy.buttons.saveAndSend}
+          </button>
+          <button
+            className="save-button blue save-button--desktop"
+            onClick={() => handleSavePhoto(false)}
+          >
             {copy.buttons.saveAndEmail}
           </button>
-          <button className="print-button" onClick={handleSavePhoto}>
+          <button
+            className="print-button"
+            onClick={() => handleSavePhoto(true)}
+          >
             {copy.buttons.printNow}
           </button>
         </div>
       </div>
-      <LandingPageContent />
+      <LandingPageContent
+        onClick={() => {
+          openPopupWidget({
+            url: "https://calendly.com/quotapathdemo/quotapath-demo-saastr",
+          });
+        }}
+      />
+      {/* <Confetti
+        fireConfetti={fireConfetti}
+        setFireConfetti={() => setFireConfetti(!fireConfetti)}
+      /> */}
     </div>
   );
 }

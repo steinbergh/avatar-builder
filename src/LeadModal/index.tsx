@@ -8,6 +8,7 @@ type LeadModalProps = {
   leadName: string;
   fileName: string;
   onClose: () => void;
+  shouldPrint: boolean;
 };
 
 ReactModal.setAppElement("#root");
@@ -16,6 +17,7 @@ export const LeadModal = ({
   isOpen,
   leadName,
   fileName,
+  shouldPrint,
   onClose,
 }: LeadModalProps) => {
   const photoUrl =
@@ -32,8 +34,11 @@ export const LeadModal = ({
     >
       <img id="navigator" src={photoUrl} alt="A hand drawn likeness of you!" />
       <h1>{`Hi ${leadName}, tell us what brought you to SaaStr?`}</h1>
-      <LeadForm firstname={leadName} photoUrl={photoUrl} />
-      {/* <button onClick={onClose}>Close</button> */}
+      <LeadForm
+        firstname={leadName}
+        photoUrl={photoUrl}
+        shouldPrint={shouldPrint}
+      />
     </ReactModal>
   );
 };

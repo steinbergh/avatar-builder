@@ -17,6 +17,7 @@
 }
 
 body {
+  position: relative;
   background-color: var(--light-grey-1);
   height: 100vh;
   width: 100%;
@@ -93,25 +94,9 @@ a:visited {
 
 .app-inner .buttons {
   grid-area: prnt;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-@media only screen and (min-width: 768px) {
-  .app-inner {
-    width: 100%;
-    gap: 23px 32px;
-    grid-template:
-      "slds avi"
-      "slds avi"
-      "btns btns"
-      ". prnt"
-      / 1fr 197px;
-  }
-
-  .app-inner .buttons {
-    justify-content: flex-end;
-  }
-}
 .avatar-wrapper {
   grid-area: avi;
   align-self: center;
@@ -120,18 +105,6 @@ a:visited {
 .sliders-wrapper {
   grid-area: slds;
 }
-
-/* .header {
-  justify-self: center;
-  max-width: var(--body-width);
-  display: grid;
-  justify-content: center;
-  grid-area: header;
-  text-align: center;
-  padding-top: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
-} */
 
 .copy {
   grid-area: copy;
@@ -142,7 +115,7 @@ a:visited {
 }
 
 .logo {
-  width: 80px;
+  width: 200px;
   justify-self: center;
 }
 
@@ -150,6 +123,11 @@ a:visited {
   grid-area: header;
   background-color: var(--navy);
   z-index: 0;
+  padding: 0;
+}
+
+.header .buttons {
+  display: none;
 }
 
 .header-inner {
@@ -158,22 +136,8 @@ a:visited {
   display: flex;
   margin: 0 auto;
   align-self: center;
-  justify-content: space-between;
-  padding: 8px 20px;
-}
-
-@media only screen and (min-width: 768px) {
-  .logo {
-    width: 180px;
-  }
-
-  .header-inner {
-    width: 80%;
-  }
-
-  .footer-inner {
-    width: 100%;
-  }
+  justify-content: center;
+  padding: 0;
 }
 
 .print-button,
@@ -188,6 +152,11 @@ a:visited {
   padding: 12px 14px;
   border-radius: 4px;
   font-weight: bold;
+}
+
+.print-button,
+.save-button--desktop {
+  display: none;
 }
 
 .save-button,
@@ -206,6 +175,50 @@ a:visited {
   align-items: center;
 }
 
-.buttons :first-child {
+.buttons .save-button {
   margin-right: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .app-inner {
+    width: 100%;
+    gap: 23px 32px;
+    grid-template:
+      "slds avi"
+      "slds avi"
+      "btns btns"
+      ". prnt"
+      / 1fr 197px;
+  }
+
+  .app-inner .buttons {
+    justify-content: flex-end;
+  }
+
+  .header .buttons {
+    display: flex;
+  }
+
+  .print-button,
+  .save-button--desktop {
+    display: inline-block;
+  }
+
+  .save-button--mobile {
+    display: none;
+  }
+
+  .logo {
+    width: 180px;
+  }
+
+  .header-inner {
+    width: 80%;
+    padding: 8px 20px;
+    justify-content: space-between;
+  }
+
+  .footer-inner {
+    width: 100%;
+  }
 }

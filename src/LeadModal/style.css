@@ -115,4 +115,9 @@
     visibility: visible !important;
     /* border: none; */
   }
+
+  /*hide all landing page content*/
+  #content {
+    display: none;
+  }
 }

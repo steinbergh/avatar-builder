@@ -29,7 +29,6 @@ export const RoleDropDown = ({
             setRole(value === roles.length ? 0 : value);
           }}
           value={role}
-          defaultValue={0}
         >
           {roles.map((role, i) => (
             <option key={`${role}-${i}`} value={i} disabled={i === 0}>

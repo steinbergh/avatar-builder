@@ -8,6 +8,18 @@ type AccessoryButtonProps = {
   activeValues: number[];
 };
 
+const accsNames: { [index: number]: string } = {
+  0: "hat",
+  1: "beard",
+  2: "mustache",
+  3: "glasses",
+  4: "mask",
+  5: "earrings",
+  6: "dog",
+  7: "banner",
+  8: "cat",
+};
+
 export const AccessoryButtons = ({
   values,
   onClick,
@@ -17,6 +29,7 @@ export const AccessoryButtons = ({
     <div className="accs-btns">
       {values.map((value, index) => (
         <div
+          id={`accessory-${accsNames[value]}`}
           key={`acc-btn-${value}-${index}`}
           onClick={() => onClick(value)}
           className={classnames("accs-btn", {

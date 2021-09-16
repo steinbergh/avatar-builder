@@ -19,10 +19,12 @@ export const LeadForm = ({
   firstname,
   lastname,
   photoUrl,
+  shouldPrint,
 }: {
   firstname: string;
   lastname?: string;
   photoUrl: string;
+  shouldPrint: boolean;
 }) => {
   const {
     register,
@@ -37,8 +39,11 @@ export const LeadForm = ({
         role: string;
         challenge: string;
       };
-      console.log(data, _role, role, challenge);
-      window.print();
+
+      if (shouldPrint) {
+        window.print();
+      }
+
       submitHubspotForm({ firstname, lastname, role, ...formData });
       avatarReferral({
         firstName: firstname,
@@ -126,7 +131,9 @@ export const LeadForm = ({
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         ></input>
       </div>
-      <button className="print-button">Print Now</button>
+      <button className="print-button">
+        {shouldPrint ? "Print Now →" : "Send my Avatar"}
+      </button>
     </form>
   );
 };
