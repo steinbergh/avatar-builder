@@ -32,16 +32,22 @@ export const LeadForm = ({
 
   const onSubmit = handleSubmit(
     (data) => {
+      const { role: _role, ...formData } = data;
+      const { role, challenge } = JSON.parse(_role) as {
+        role: string;
+        challenge: string;
+      };
+      console.log(data, _role, role, challenge);
       window.print();
-      submitHubspotForm({ firstname, lastname, ...data });
+      submitHubspotForm({ firstname, lastname, role, ...formData });
       avatarReferral({
         firstName: firstname,
-        challenge: data.role,
+        challenge,
         email: data.email,
         workspaceName: data.company,
         photoUrl,
         interest: data.interest,
-        role: data.role,
+        role,
       });
     },
     (errors, e) => console.log(errors, e)

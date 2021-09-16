@@ -1,5 +1,6 @@
 .lead-form input[type="text"],
 .lead-form select {
+  display: inline;
   appearance: none;
   background-color: transparent;
   outline: none;
@@ -29,11 +30,9 @@
 }
 
 .lead-form p {
+  display: block;
   font-size: 18px;
   color: var(--dark-grey);
-}
-
-.lead-form p {
   margin-top: 10px;
 }
 
@@ -106,4 +105,7 @@
   background-repeat: no-repeat;
   transform: translate(-25%, -25%);
   pointer-events: none;
+}
+
+@media only screen and (min-width: 768px) {
 }

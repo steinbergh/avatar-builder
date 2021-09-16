@@ -1,38 +1,60 @@
 export const roleOptions = [
   { value: "", label: "Select one" },
   {
-    value: "Executive Leadership",
+    value: { challenge: "scaling your company.", role: "Executive Leadership" },
     label: "Executive Leadership",
   },
   {
-    value: "Sales Rep",
+    value: {
+      challenge: "seeing your commissions in real-time.",
+      role: "a Sales Rep",
+    },
     label: "a Sales Rep",
   },
   {
-    value: "Sales Management",
+    value: {
+      challenge: "coaching and motivating every rep.",
+      role: "Sales Management",
+    },
     label: "Sales Management",
   },
   {
-    value: "Account management/CS",
+    value: {
+      challenge: "understanding your commissions.",
+      role: "Account management/CS",
+    },
     label: "Account management/CS",
   },
   {
-    value: "Revenue Operations",
+    value: {
+      challenge: "building and optimizing comp plans.",
+      role: "Revenue Operations",
+    },
     label: "Revenue Operations",
   },
   {
-    value: "Finance",
+    value: { challenge: "forecasting revenue and reporting.", role: "Finance" },
     label: "Finance",
   },
   {
-    value: "Accounting & HR",
+    value: {
+      challenge: "paying your sales team accurately and on time.",
+      role: "Accounting & HR",
+    },
     label: "Accounting & HR",
   },
   {
-    value: "Founder",
+    value: { challenge: "hiring sales leaders.", role: "a Founder" },
     label: "a Founder",
   },
-];
+  {
+    value: { challenge: "GTM and Operations.", role: "an Investor" },
+    label: "an Investor",
+  },
+].map(({ value, label }) => ({
+  value: typeof value === "string" ? value : JSON.stringify(value),
+  label,
+}));
 
 export const reasonOptions = [
   { value: "", label: "Select one" },
@@ -65,27 +87,31 @@ export const reasonOptions = [
 export const interestOptions = [
   { value: "", label: "Select one" },
   {
-    value: "my pets(s)",
+    value: "with your dog.",
     label: "my pets(s)",
   },
   {
-    value: "my kid(s)",
+    value: "with your kids.",
     label: "my kid(s)",
   },
   {
-    value: "travel",
+    value: "travelling the world.",
     label: "travel",
   },
   {
-    value: "music",
+    value: "listening to music.",
     label: "music",
   },
   {
-    value: "food",
+    value: "watching sports.",
+    label: "sports",
+  },
+  {
+    value: "wining & dining.",
     label: "food",
   },
   {
-    value: "my company",
+    value: "building your company.",
     label: "my company",
   },
 ];

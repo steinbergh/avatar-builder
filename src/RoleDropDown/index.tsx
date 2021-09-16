@@ -32,7 +32,7 @@ export const RoleDropDown = ({
           defaultValue={0}
         >
           {roles.map((role, i) => (
-            <option value={i} disabled={i === 0}>
+            <option key={`${role}-${i}`} value={i} disabled={i === 0}>
               {role}
             </option>
           ))}

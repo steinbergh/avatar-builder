@@ -22,6 +22,6 @@ export const LandingPageContent = () => {
   }, [data]);
 
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (!data) return <div></div>;
   return <div style={{ backgroundColor: "white" }}>{parse(data)}</div>;
 };
