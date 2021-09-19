@@ -11,28 +11,25 @@ const CONTENT_URL =
     : `${process.env.PUBLIC_URL}/avatar-content/`;
 
 const fetcher = async (url: string) => {
-  return await axios.get(url, { responseType: "document" });
+  return await axios
+    .get(url, { responseType: "document" })
+    .then((res) => res.data.getElementById("content").outerHTML);
 };
 
 export const LandingPageContent = ({ onClick }: { onClick: () => void }) => {
-  // const { data, error } = useSWR(CONTENT_URL, fetcher);
-  const [data, setData] = React.useState<null | string>(null);
-  const [content, setContent] = React.useState<
-    string | JSX.Element | JSX.Element[]
-  >([]);
-  console.log("render");
-
-  React.useEffect(() => {
-    fetcher(CONTENT_URL).then((res) =>
-      setData(res.data.getElementById("content").outerHTML)
-    );
-  }, []);
+  const { data, error } = useSWR(CONTENT_URL, fetcher);
 
   React.useEffect(() => {
     if (!data) return;
     scrollRevealInit();
-    setContent(
-      parse(data, {
+  }, [data]);
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div></div>;
+
+  return (
+    <div className="landing-content" style={{ backgroundColor: "white" }}>
+      {parse(data, {
         replace: (domNode) => {
           if (
             domNode instanceof Element &&
@@ -57,12 +54,7 @@ export const LandingPageContent = ({ onClick }: { onClick: () => void }) => {
 
           return domNode;
         },
-      })
-    );
-  }, [data, onClick]);
-
-  // if (error) return <div>failed to load</div>;
-  if (!data) return <div></div>;
-
-  return <div style={{ backgroundColor: "white" }}>{content}</div>;
+      })}
+    </div>
+  );
 };

@@ -38,6 +38,7 @@ export const LeadModal = ({
         firstname={leadName}
         photoUrl={photoUrl}
         shouldPrint={shouldPrint}
+        onClose={onClose}
       />
     </ReactModal>
   );

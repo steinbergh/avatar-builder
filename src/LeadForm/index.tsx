@@ -1,5 +1,3 @@
-import axios from "axios";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { reasonOptions, roleOptions, interestOptions } from "./consts";
 import { submitHubspotForm } from "./form";
@@ -20,11 +18,13 @@ export const LeadForm = ({
   lastname,
   photoUrl,
   shouldPrint,
+  onClose,
 }: {
   firstname: string;
   lastname?: string;
   photoUrl: string;
   shouldPrint: boolean;
+  onClose: () => void;
 }) => {
   const {
     register,
@@ -54,6 +54,13 @@ export const LeadForm = ({
         interest: data.interest,
         role,
       });
+
+      // Promise.allSettled([
+
+      // ]).then((results) => {
+      //   console.log(results);
+      //   onClose();
+      // });
     },
     (errors, e) => console.log(errors, e)
   );
