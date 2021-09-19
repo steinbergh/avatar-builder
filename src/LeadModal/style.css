@@ -54,8 +54,10 @@
 }
 
 @page {
-  size: 50mm;
+  size: 50.8mm;
   margin: 0;
+  padding: 0;
+  border-collapse: collapse;
 }
 
 @media print {
@@ -65,7 +67,7 @@
 
   html,
   body {
-    width: 50mm;
+    width: 50.8mm;
     height: auto !important;
     min-height: auto !important;
   }
@@ -107,8 +109,9 @@
   }
 
   div#avatar {
-    width: 50mm;
+    width: 50.8mm;
     display: grid;
+    margin-left: 1.4mm;
   }
 
   .avatar-wrapper .avatar-border,
