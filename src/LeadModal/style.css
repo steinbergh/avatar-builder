@@ -25,7 +25,7 @@
   background-color: var(--light-grey-1);
   transition: transform 230ms ease-in-out, opacity 230ms ease-in-out;
   opacity: 0;
-  width: 75%;
+  width: 80%;
 }
 
 .ReactModal__Content--after-open {
