@@ -55,7 +55,7 @@ export const LeadForm = ({
           interest: data.interest,
           role,
         }),
-      ]).then((results) => {
+      ]).then(() => {
         onClose();
       });
     },
