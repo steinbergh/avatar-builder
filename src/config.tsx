@@ -18,6 +18,7 @@ import {
   SliderShirt,
   SliderSkin,
 } from "./assets/svg/slider-icons";
+import { ReactComponent as EmailIcon } from "./assets/svg/refer_a_friend.svg";
 
 export const skinTones = [
   "#f9d0b4",
@@ -70,19 +71,23 @@ export const config = {
   copy: {
     title: "Commission tracking made for you",
     body: [
-      "Create your avatar to experience what it’s like to build comp plans and forecast sales in QuotaPath – easy as a few clicks!  Whether you’re a sales rep, sales leader, revenue operations, or finance, our solution is as custom and creative as you are.",
+      "Create your avatar in just a few clicks and experience what it's like to build a comp plan in QuotaPath! Whether you’re a sales rep, sales leader, revenue operations, or finance, our solution is as custom and creative as you are.",
     ],
     buttons: {
       saveAndSend: (
-        <p>
+        <>
           {"Save & Send"} <strong>→</strong>
-        </p>
+        </>
       ),
-      saveAndEmail: "Email",
+      saveAndEmail: (
+        <>
+          <EmailIcon /> Email
+        </>
+      ),
       printNow: (
-        <p>
+        <>
           Print Sticker <strong>→</strong>
-        </p>
+        </>
       ),
     },
   },

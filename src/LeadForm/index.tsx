@@ -125,7 +125,7 @@ export const LeadForm = ({
         {"."}
       </p>
       <div className="email-contain">
-        <label htmlFor="email">{"Get my digital avatar."}</label>
+        <label htmlFor="email">{"Get my digital avatar:"}</label>
         <input
           className={classnames("text-input", {
             error: errors.email,

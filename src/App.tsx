@@ -151,7 +151,7 @@ function App() {
         </div>
       </div>
       <div className="copy">
-        <h1>{copy.title}</h1>
+        <h2>{copy.title}</h2>
         {copy.body.map((graph, index) => (
           <p key={`graph-${index}`}>{graph}</p>
         ))}
