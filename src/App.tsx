@@ -16,8 +16,8 @@ import { LeadModal } from "LeadModal";
 import classnames from "classnames";
 import { RoleDropDown } from "RoleDropDown";
 import { LandingPageContent } from "LandingPageContent";
-import { Confetti } from "Confetti";
 import { openPopupWidget } from "react-calendly";
+import { ThankYouModal } from "./ThankYouModal";
 
 const { copy, sliders, buttons } = config;
 
@@ -41,9 +41,9 @@ function App() {
   const [state, setState] = useState<AvatarState>(initialState);
   const [fileName, setFileName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [tyModalOpen, setTyModalOpen] = useState(false);
   const [shouldPrint, setShouldPrint] = useState(false);
   const [leadName, setLeadName] = useState<string | null>("");
-  const [fireConfetti, setFireConfetti] = useState(false);
 
   const aviRef = useRef<HTMLDivElement>(null);
   const activeAccessories = state[PartsKeys.ACCESSORY];
@@ -92,7 +92,6 @@ function App() {
             )
             .then(() => {
               setFileName(`${_fileName}.png`);
-              setFireConfetti(!fireConfetti);
               setShouldPrint(_shouldPrint);
               setModalOpen(true);
             });
@@ -101,8 +100,17 @@ function App() {
           console.log(err);
         });
     },
-    [aviRef, state, fileName, fireConfetti]
+    [aviRef, state, fileName]
   );
+
+  const handleResetExperience = () => {
+    setFileName("");
+    setLeadName("");
+    setState(randomizedAvatar());
+    setModalOpen(false);
+    setTyModalOpen(false);
+    setShouldPrint(false);
+  };
 
   return (
     <div id="appRoot" className="App">
@@ -112,8 +120,15 @@ function App() {
         leadName={leadName || "there"}
         fileName={fileName}
         onClose={() => {
-          setFireConfetti(!fireConfetti);
+          setTyModalOpen(true);
           setModalOpen(false);
+        }}
+      />
+      <ThankYouModal
+        isOpen={tyModalOpen}
+        onAfterColse={handleResetExperience}
+        onClose={() => {
+          setTyModalOpen(false);
         }}
       />
       <div className="header">
@@ -224,10 +239,6 @@ function App() {
           });
         }}
       />
-      {/* <Confetti
-        fireConfetti={fireConfetti}
-        setFireConfetti={() => setFireConfetti(!fireConfetti)}
-      /> */}
     </div>
   );
 }

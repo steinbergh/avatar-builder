@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as SliderFace } from "./slider-face.svg";
 import { ReactComponent as SliderBackground } from "./slider-background.svg";
 import { ReactComponent as SliderBody } from "./slider-body.svg";

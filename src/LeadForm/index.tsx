@@ -44,23 +44,20 @@ export const LeadForm = ({
         window.print();
       }
 
-      submitHubspotForm({ firstname, lastname, role, ...formData });
-      avatarReferral({
-        firstName: firstname,
-        challenge,
-        email: data.email,
-        workspaceName: data.company,
-        photoUrl,
-        interest: data.interest,
-        role,
+      Promise.allSettled([
+        submitHubspotForm({ firstname, lastname, role, ...formData }),
+        avatarReferral({
+          firstName: firstname,
+          challenge,
+          email: data.email,
+          workspaceName: data.company,
+          photoUrl,
+          interest: data.interest,
+          role,
+        }),
+      ]).then((results) => {
+        onClose();
       });
-
-      // Promise.allSettled([
-
-      // ]).then((results) => {
-      //   console.log(results);
-      //   onClose();
-      // });
     },
     (errors, e) => console.log(errors, e)
   );

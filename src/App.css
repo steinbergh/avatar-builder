@@ -145,6 +145,7 @@ a:visited {
 .save-button {
   align-self: center;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .print-button {
@@ -153,6 +154,29 @@ a:visited {
   padding: 12px 14px;
   border-radius: 4px;
   font-weight: bold;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.print-button::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #3ee4ab;
+  /* filter: brightness(118%); */
+  z-index: -1;
+  top: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scale3d(0, 1, 1);
+  transition: transform 230ms ease-in-out;
+}
+.print-button:hover::before {
+  transform-origin: left;
+  transform: scale3d(1, 1, 1);
+  transition: transform 230ms ease-in-out;
 }
 
 .print-button,

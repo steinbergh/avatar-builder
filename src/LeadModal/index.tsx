@@ -1,5 +1,4 @@
 import { LeadForm } from "LeadForm";
-import React from "react";
 import ReactModal from "react-modal";
 import "./style.css";
 
@@ -20,6 +19,12 @@ export const LeadModal = ({
   shouldPrint,
   onClose,
 }: LeadModalProps) => {
+  // React.useEffect(() => {
+  //   const handAfterPrint = () => onClose();
+  //   window.addEventListener("onafterprint", handAfterPrint);
+  //   return window.removeEventListener("onafterprint", handAfterPrint);
+  // });
+
   const photoUrl =
     process.env.NODE_ENV === "development"
       ? `http://localhost:8888/img/${fileName}`
@@ -31,6 +36,7 @@ export const LeadModal = ({
       isOpen={isOpen}
       overlayClassName="overlay"
       className="content"
+      preventScroll
     >
       <img id="navigator" src={photoUrl} alt="A hand drawn likeness of you!" />
       <h1>{`Hi ${leadName}, tell us what brought you to SaaStr?`}</h1>
