@@ -1,4 +1,5 @@
 import { LeadForm } from "LeadForm";
+import React from "react";
 import ReactModal from "react-modal";
 import "./style.css";
 
@@ -19,16 +20,13 @@ export const LeadModal = ({
   shouldPrint,
   onClose,
 }: LeadModalProps) => {
-  // React.useEffect(() => {
-  //   const handAfterPrint = () => onClose();
-  //   window.addEventListener("onafterprint", handAfterPrint);
-  //   return window.removeEventListener("onafterprint", handAfterPrint);
-  // });
+  const [imgIsLoaded, setImageIsLoaded] = React.useState(false);
 
   const photoUrl =
     process.env.NODE_ENV === "development"
       ? `http://localhost:8888/img/${fileName}`
       : `${window.location.protocol}//${window.location.host}/wp-content/uploads/nvgtrs/${fileName}`;
+
   return (
     <ReactModal
       onRequestClose={onClose}
@@ -38,7 +36,13 @@ export const LeadModal = ({
       className="content"
       preventScroll
     >
-      <img id="navigator" src={photoUrl} alt="A hand drawn likeness of you!" />
+      <img
+        style={{ opacity: imgIsLoaded ? 1 : 0 }}
+        onLoad={() => setImageIsLoaded(true)}
+        id="navigator"
+        src={photoUrl}
+        alt="A hand drawn likeness of you!"
+      />
       <h2>{`Hi ${leadName}, tell us what brought you to SaaStr?`}</h2>
       <LeadForm
         firstname={leadName}

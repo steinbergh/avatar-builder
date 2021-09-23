@@ -4,6 +4,7 @@ import { submitHubspotForm } from "./form";
 import { avatarReferral } from "./referral";
 import "./styles.css";
 import classnames from "classnames";
+import React from "react";
 
 type FormData = {
   role: string;

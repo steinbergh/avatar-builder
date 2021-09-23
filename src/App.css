@@ -76,10 +76,18 @@ a:visited {
   display: inline-grid;
   gap: 16px;
   grid-template:
-    "avi"
-    "slds"
+    "upper"
     "btns"
     "prnt";
+}
+
+.app-inner-upper {
+  grid-area: upper;
+  display: inline-grid;
+  gap: 16px;
+  grid-template:
+    "avi"
+    "slds";
 }
 
 .app-inner .buttons {
@@ -88,8 +96,21 @@ a:visited {
 }
 
 .avatar-wrapper {
+  position: sticky;
+  top: 0;
   grid-area: avi;
   align-self: center;
+  z-index: 2;
+}
+
+.avatar-wrapper:before {
+  content: "";
+  width: calc(100% + 66px);
+  height: 100%;
+  position: absolute;
+  background-color: white;
+  left: -33px;
+  z-index: -1;
 }
 
 .sliders-wrapper {
@@ -230,11 +251,27 @@ a:visited {
     width: 100%;
     gap: 23px 32px;
     grid-template:
-      "slds avi"
-      "slds avi"
+      "upper upper"
+      "upper upper"
       "btns btns"
       "prnt prnt"
       / 1fr 197px;
+  }
+
+  .app-inner-upper {
+    width: 100%;
+    gap: 23px 32px;
+    grid-template:
+      "slds avi"
+      "slds avi"
+      / 1fr 197px;
+  }
+
+  .avatar-wrapper {
+    position: relative;
+  }
+  .avatar-wrapper:before {
+    display: none;
   }
 
   .app-inner .buttons {

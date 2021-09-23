@@ -41,7 +41,7 @@ export const ThankYouModal = ({
         className="ty-content"
         preventScroll
       >
-        <h1>{`Thank you and see you soon!`}</h1>
+        <h2>{`Thank you and see you soon!`}</h2>
       </ReactModal>
       <Confetti fireConfetti={fireConfetti} />
     </>

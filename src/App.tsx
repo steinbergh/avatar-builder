@@ -18,6 +18,7 @@ import { RoleDropDown } from "RoleDropDown";
 import { LandingPageContent } from "LandingPageContent";
 import { openPopupWidget } from "react-calendly";
 import { ThankYouModal } from "./ThankYouModal";
+import { PrintAgainModal } from "PrintAgainModal";
 
 const { copy, sliders, buttons } = config;
 
@@ -27,6 +28,7 @@ function App() {
   const [fileName, setFileName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [tyModalOpen, setTyModalOpen] = useState(false);
+  const [paModalOpen, setPaModalOpen] = useState(false);
   const [shouldPrint, setShouldPrint] = useState(false);
   const [leadName, setLeadName] = useState<string | null>("");
 
@@ -38,6 +40,8 @@ function App() {
       if (aviRef.current === null) {
         return;
       }
+      setShouldPrint(_shouldPrint);
+      setModalOpen(true);
 
       toBlob(aviRef.current, {
         cacheBust: true,
@@ -77,8 +81,6 @@ function App() {
             )
             .then(() => {
               setFileName(`${_fileName}.png`);
-              setShouldPrint(_shouldPrint);
-              setModalOpen(true);
             });
         })
         .catch((err) => {
@@ -97,25 +99,58 @@ function App() {
     setShouldPrint(false);
   }, [randomAvatar]);
 
+  const _sliders = React.useMemo(
+    () =>
+      sliders.map(
+        ({ key, ...input }, index) =>
+          key !== PartsKeys.ACCESSORY && (
+            <Slider
+              {...input}
+              key={`${key}-${index}`}
+              value={state[key]}
+              onChange={(value) => setState({ ...state, [key]: value })}
+            />
+          )
+      ),
+    [state]
+  );
+
   return (
     <div id="appRoot" className="App">
-      <LeadModal
-        isOpen={modalOpen}
-        shouldPrint={shouldPrint}
-        leadName={leadName || "there"}
-        fileName={fileName}
-        onClose={() => {
-          setTyModalOpen(true);
-          setModalOpen(false);
-        }}
-      />
-      <ThankYouModal
-        isOpen={tyModalOpen}
-        onAfterColse={handleResetExperience}
-        onClose={() => {
-          setTyModalOpen(false);
-        }}
-      />
+      {modalOpen && (
+        <LeadModal
+          isOpen={modalOpen}
+          shouldPrint={shouldPrint}
+          leadName={leadName || "there"}
+          fileName={fileName}
+          onClose={() => {
+            if (shouldPrint) {
+              setPaModalOpen(true);
+            } else {
+              setTyModalOpen(true);
+            }
+            setModalOpen(false);
+          }}
+        />
+      )}
+      {paModalOpen && (
+        <PrintAgainModal
+          isOpen={paModalOpen}
+          onClose={() => {
+            setTyModalOpen(true);
+            setPaModalOpen(false);
+          }}
+        />
+      )}
+      {tyModalOpen && (
+        <ThankYouModal
+          isOpen={tyModalOpen}
+          onAfterColse={handleResetExperience}
+          onClose={() => {
+            setTyModalOpen(false);
+          }}
+        />
+      )}
       <div className="header">
         <div className="header-inner">
           <Logo className="logo" />
@@ -142,22 +177,34 @@ function App() {
         ))}
       </div>
       <div className="app-inner">
-        <div
-          className={classnames("avatar-wrapper", {
-            "accessory-active-1": activeAccessories.includes(0),
-            "accessory-active-2": activeAccessories.includes(1),
-            "accessory-active-3": activeAccessories.includes(2),
-          })}
-        >
-          <NameInput
-            setLeadName={(value) => {
-              setLeadName(value);
-            }}
-            leadName={leadName || ""}
-          />
-          <Avatar ref={aviRef} {...state} />
-          <RandomizeButton onClick={() => setState(randomAvatar())} />
+        <div className="app-inner-upper">
+          <div
+            className={classnames("avatar-wrapper", {
+              "accessory-active-1": activeAccessories.includes(0),
+              "accessory-active-2": activeAccessories.includes(1),
+              "accessory-active-3": activeAccessories.includes(2),
+            })}
+          >
+            <NameInput
+              setLeadName={(value) => {
+                setLeadName(value);
+              }}
+              leadName={leadName || ""}
+            />
+            <Avatar ref={aviRef} {...state} />
+            <RandomizeButton onClick={() => setState(randomAvatar())} />
+          </div>
+          <div className="sliders-wrapper">
+            {_sliders}
+            <RoleDropDown
+              role={state.badge}
+              setRole={(badgeNumber) =>
+                setState({ ...state, [PartsKeys.BADGE]: badgeNumber })
+              }
+            />
+          </div>
         </div>
+
         {buttons.map(
           ({ key, values }) =>
             key === PartsKeys.ACCESSORY && (
@@ -177,25 +224,6 @@ function App() {
               />
             )
         )}
-        <div className="sliders-wrapper">
-          {sliders.map(
-            ({ key, ...input }, index) =>
-              key !== PartsKeys.ACCESSORY && (
-                <Slider
-                  {...input}
-                  key={`${key}-${index}`}
-                  value={state[key]}
-                  onChange={(value) => setState({ ...state, [key]: value })}
-                />
-              )
-          )}
-          <RoleDropDown
-            role={state.badge}
-            setRole={(badgeNumber) =>
-              setState({ ...state, [PartsKeys.BADGE]: badgeNumber })
-            }
-          />
-        </div>
         <div className="buttons">
           <button
             className="save-button blue save-button--mobile"
