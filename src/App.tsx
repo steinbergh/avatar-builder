@@ -21,24 +21,9 @@ import { ThankYouModal } from "./ThankYouModal";
 
 const { copy, sliders, buttons } = config;
 
-// const avatar: AvatarState = {
-//   bg: 0,
-//   body: 0,
-//   face: 0,
-//   hair: 0,
-//   eyes: 0,
-//   nose: 0,
-//   mouth: 0,
-//   accessory: [],
-//   skinTone: 0,
-//   shirtColor: 0,
-//   hairColor: 0,
-// };
-
-const initialState = randomizedAvatar();
-
 function App() {
-  const [state, setState] = useState<AvatarState>(initialState);
+  const randomAvatar = React.useMemo(() => randomizedAvatar, []);
+  const [state, setState] = useState<AvatarState>(randomAvatar);
   const [fileName, setFileName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [tyModalOpen, setTyModalOpen] = useState(false);
@@ -103,14 +88,14 @@ function App() {
     [aviRef, state, fileName]
   );
 
-  const handleResetExperience = () => {
+  const handleResetExperience = React.useCallback(() => {
     setFileName("");
     setLeadName("");
-    setState(randomizedAvatar());
+    setState(randomAvatar());
     setModalOpen(false);
     setTyModalOpen(false);
     setShouldPrint(false);
-  };
+  }, [randomAvatar]);
 
   return (
     <div id="appRoot" className="App">
@@ -171,7 +156,7 @@ function App() {
             leadName={leadName || ""}
           />
           <Avatar ref={aviRef} {...state} />
-          <RandomizeButton onClick={() => setState(randomizedAvatar())} />
+          <RandomizeButton onClick={() => setState(randomAvatar())} />
         </div>
         {buttons.map(
           ({ key, values }) =>

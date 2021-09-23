@@ -12,6 +12,7 @@
   transition: fill 250ms ease-in-out;
   fill: var(--hair-color);
 }
+
 .accessory-1,
 .accessory-3,
 .accessory-2 {

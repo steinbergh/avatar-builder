@@ -38,7 +38,7 @@ export const ThankYouModal = ({
         shouldCloseOnOverlayClick
         isOpen={isOpen}
         overlayClassName="overlay"
-        className="content"
+        className="ty-content"
         preventScroll
       >
         <h1>{`Thank you and see you soon!`}</h1>

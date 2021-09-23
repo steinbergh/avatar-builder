@@ -13,6 +13,34 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarState>(
   (props, ref) => {
     const bg = useSpring({ to: { fill: bgColors[props.bg] } });
 
+    const mostParts = React.useMemo(
+      () =>
+        parts.map(
+          (key) =>
+            key !== "skinTone" &&
+            key !== "bg" &&
+            key !== "accessory" &&
+            key !== "shirtColor" &&
+            key !== "hairColor" &&
+            key !== "badge" &&
+            getPart(key, props[key])
+        ),
+      [props]
+    );
+
+    const accessoryParts = React.useMemo(
+      () =>
+        props[PartsKeys.ACCESSORY].map((acc) =>
+          getPart(PartsKeys.ACCESSORY, acc)
+        ),
+      [props]
+    );
+
+    const badgeParts = React.useMemo(
+      () => getPart(PartsKeys.BADGE, props[PartsKeys.BADGE]),
+      [props]
+    );
+
     return (
       <div className="avatar-border">
         <div ref={ref} id="avatar" className="avatar-frame">
@@ -29,20 +57,9 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarState>(
             <animated.svg viewBox="0 0 235 235">
               <animated.rect width="235" height="235" style={bg} />
             </animated.svg>
-            {parts.map(
-              (key) =>
-                key !== "skinTone" &&
-                key !== "bg" &&
-                key !== "accessory" &&
-                key !== "shirtColor" &&
-                key !== "hairColor" &&
-                key !== "badge" &&
-                getPart(key, props[key])
-            )}
-            {props[PartsKeys.ACCESSORY].map((acc) =>
-              getPart(PartsKeys.ACCESSORY, acc)
-            )}
-            {getPart(PartsKeys.BADGE, props[PartsKeys.BADGE])}
+            {mostParts}
+            {accessoryParts}
+            {badgeParts}
           </div>
           <QPLogo className="qp-logo" />
           <SaaStrLogo className="conference-logo" />

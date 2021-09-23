@@ -39,7 +39,7 @@ export const LeadModal = ({
       preventScroll
     >
       <img id="navigator" src={photoUrl} alt="A hand drawn likeness of you!" />
-      <h1>{`Hi ${leadName}, tell us what brought you to SaaStr?`}</h1>
+      <h2>{`Hi ${leadName}, tell us what brought you to SaaStr?`}</h2>
       <LeadForm
         firstname={leadName}
         photoUrl={photoUrl}

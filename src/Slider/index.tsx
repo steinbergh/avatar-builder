@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./style.css";
 import { useSpring, animated, config } from "react-spring";
-import { useDrag } from "react-use-gesture";
+import { useDrag } from "@use-gesture/react";
 import useBoundingclientrect from "@rooks/use-boundingclientrect";
 
 type SliderProps = {
@@ -21,18 +21,17 @@ const getValuePos = (w: number, vs: number) => (n: number) => {
 const getPosFromValue = (w: number, vs: number) => (n: number) =>
   w !== 0 ? (w / (vs - 1)) * n : 0;
 
+const nativeSetter = Object.getOwnPropertyDescriptor(
+  window.HTMLInputElement.prototype,
+  "value"
+)?.set;
+
 const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
-  const [inputValue, setInputValue] = useState(0);
+  // const [inputValue, setInputValue] = useState(0);
   const [touchDown, setTouchDown] = useState(false);
 
   const sliderRef = useRef<HTMLInputElement>(null);
   const sliderBounds = useBoundingclientrect(sliderRef);
-
-  const [{ x, scale }, api] = useSpring(() => ({
-    x: 0,
-    scale: 1,
-    config: config.default,
-  }));
 
   const getNextPos = React.useMemo(
     () => getValuePos(sliderBounds?.width || 0, values.length),
@@ -44,74 +43,79 @@ const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
     [sliderBounds?.width, values.length]
   );
 
-  React.useEffect(() => {
+  const [{ x, scale }, api] = useSpring(() => ({
+    x: 0,
+    scale: 1,
+    config: config.default,
+  }));
+
+  React.useLayoutEffect(() => {
     if (!touchDown) {
       api.start({ x: posFromValue(value) });
     }
   }, [api, value, posFromValue, touchDown]);
 
-  React.useEffect(() => {
-    if (sliderRef && sliderRef.current && Object) {
-      const nativeSetter = Object.getOwnPropertyDescriptor(
-        window.HTMLInputElement.prototype,
-        "value"
-      )?.set;
-
-      if (nativeSetter) {
+  const setValue = React.useCallback(
+    (inputValue: number) => {
+      if (sliderRef && sliderRef.current && Object && nativeSetter) {
         nativeSetter.call(sliderRef.current, String(inputValue));
         sliderRef.current.dispatchEvent(new Event("change", { bubbles: true }));
       }
-    }
-  }, [inputValue]);
+    },
+    [sliderRef]
+  );
 
   const bind = useDrag(
-    ({ active, movement: [_x], down }) => {
-      const nextPos = getNextPos(_x);
-      setInputValue(nextPos);
-      setTouchDown(down);
+    ({ active, offset: [ox], lastOffset: [lx], down }) => {
+      const nextPos = getNextPos(ox);
+      const prevPos = getNextPos(lx);
 
-      const nextXPos = sliderBounds?.width
-        ? (sliderBounds?.width / (values.length - 1)) * nextPos
-        : 0;
+      if (nextPos !== value && nextPos !== prevPos) {
+        setValue(nextPos);
+      }
+
+      if (!active) {
+        setTouchDown(down);
+      }
 
       api.start({
-        to: async (next) => {
-          await next({
-            x: active ? _x : nextXPos,
-            scale: active ? 1.1 : 1,
-            immediate: (name) => active && name === "x",
-          });
-        },
+        x: active
+          ? ox
+          : sliderBounds?.width
+          ? (sliderBounds?.width / (values.length - 1)) * nextPos
+          : 0,
+        scale: active ? 1.1 : 1,
+        immediate: (name) => active && name === "x",
       });
     },
     {
-      initial: () => [x.get(), 0],
+      from: () => [x.get(), 0],
       axis: "x",
-      bounds: { left: 0, right: sliderBounds?.width },
+      bounds: sliderRef,
       rubberband: false,
+      preventDefault: true,
+      preventScroll: true,
     }
   );
 
-  console.log();
-
   return (
     <div className="slider">
-      <animated.label htmlFor={label}>
+      <label htmlFor={label}>
         <span className="icon">{Icon}</span>
         {label}
-      </animated.label>
-      <input
+      </label>
+      <animated.input
         ref={sliderRef}
         type="range"
         min="0"
         max={values.length - 1}
         name={label}
-        defaultValue={inputValue}
+        value={value}
         onChange={(e) => {
           onChange(Number(e.target.value));
         }}
-      ></input>
-      <div className="ticks">
+      ></animated.input>
+      <animated.div className="ticks">
         {[...new Array(values.length - 1)].map(
           (_, i) =>
             i !== 0 &&
@@ -123,7 +127,7 @@ const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
               ></span>
             )
         )}
-      </div>
+      </animated.div>
 
       <animated.div
         {...bind()}
