@@ -65,6 +65,19 @@
 .handle {
   position: absolute;
   box-sizing: border-box;
+  height: 6px;
+  width: 2px;
+  left: -1px;
+  grid-area: slider;
+  touch-action: none;
+}
+
+.handle:before {
+  position: absolute;
+  content: "";
+  display: block;
+  transform: translate(0, -50%);
+  top: 3px;
   height: 26px;
   width: 26px;
   left: -13px;
@@ -72,8 +85,6 @@
   cursor: pointer;
   /* smargin-top: -8px; */
   border-radius: 100%;
-  grid-area: slider;
-  touch-action: none;
 }
 
 .ticks {

@@ -68,22 +68,24 @@ const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
   const bind = useDrag(
     ({ active, offset: [ox], lastOffset: [lx], down }) => {
       const nextPos = getNextPos(ox);
-      const prevPos = getNextPos(lx);
+      // const prevPos = getNextPos(lx);
 
-      if (nextPos !== value && nextPos !== prevPos) {
-        setValue(nextPos);
-      }
+      console.log(nextPos);
+      setValue(nextPos);
+      // if (nextPos !== value && nextPos !== prevPos) {
+      // }
 
       if (!active) {
         setTouchDown(down);
       }
 
+      const nextXPos = sliderBounds?.width
+        ? (sliderBounds?.width / (values.length - 1)) * nextPos
+        : 0;
+
+      console.log(ox, nextXPos, active, active ? ox : nextXPos);
       api.start({
-        x: active
-          ? ox
-          : sliderBounds?.width
-          ? (sliderBounds?.width / (values.length - 1)) * nextPos
-          : 0,
+        x: active ? ox : nextXPos,
         scale: active ? 1.1 : 1,
         immediate: (name) => active && name === "x",
       });
@@ -92,9 +94,10 @@ const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
       from: () => [x.get(), 0],
       axis: "x",
       bounds: sliderRef,
-      rubberband: false,
+      rubberband: true,
       preventDefault: true,
       preventScroll: true,
+      filterTaps: true,
     }
   );
 
@@ -131,7 +134,7 @@ const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
 
       <animated.div
         {...bind()}
-        style={{ x, scale }}
+        style={{ transformOrigin: "center center", x, scale }}
         className="handle"
       ></animated.div>
     </div>
