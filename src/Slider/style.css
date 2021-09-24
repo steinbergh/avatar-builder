@@ -87,6 +87,18 @@
   border-radius: 100%;
 }
 
+.handle:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  left: -20px;
+  top: 3px;
+  transform: translate(0, -50%);
+}
+
 .ticks {
   position: absolute;
   grid-area: slider;
