@@ -24,7 +24,7 @@ export const LeadModal = ({
 
   const photoUrl =
     process.env.NODE_ENV === "development"
-      ? `http://localhost:8888/img/${fileName}`
+      ? `http://localhost:8080/img/${fileName}`
       : `${window.location.protocol}//${window.location.host}/wp-content/uploads/nvgtrs/${fileName}`;
 
   return (

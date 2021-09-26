@@ -70,22 +70,20 @@ const Slider = ({ Icon, label, onChange, value, values }: SliderProps) => {
       const nextPos = getNextPos(ox);
       // const prevPos = getNextPos(lx);
 
-      console.log(nextPos);
-      setValue(nextPos);
       // if (nextPos !== value && nextPos !== prevPos) {
+      setValue(nextPos);
       // }
 
       if (!active) {
         setTouchDown(down);
       }
 
-      const nextXPos = sliderBounds?.width
-        ? (sliderBounds?.width / (values.length - 1)) * nextPos
-        : 0;
-
-      console.log(ox, nextXPos, active, active ? ox : nextXPos);
       api.start({
-        x: active ? ox : nextXPos,
+        x: active
+          ? ox
+          : sliderBounds?.width
+          ? (sliderBounds?.width / (values.length - 1)) * nextPos
+          : 0,
         scale: active ? 1.1 : 1,
         immediate: (name) => active && name === "x",
       });

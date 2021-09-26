@@ -75,7 +75,7 @@ function App() {
           axios
             .post(
               process.env.NODE_ENV === "development"
-                ? "http://localhost:8888/upload.php"
+                ? "http://localhost:8080/upload.php"
                 : process.env.PUBLIC_URL + "/upload.php",
               formData
             )

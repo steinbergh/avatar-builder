@@ -43,8 +43,9 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarState>(
 
     return (
       <div className="avatar-border">
-        <div ref={ref} id="avatar" className="avatar-frame">
+        <div id="avatar" className="avatar-frame">
           <div
+            ref={ref}
             style={
               {
                 "--skin-tone": skinTones[props.skinTone],
