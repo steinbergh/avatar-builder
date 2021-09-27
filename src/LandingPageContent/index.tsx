@@ -24,11 +24,15 @@ export const LandingPageContent = ({ onClick }: { onClick: () => void }) => {
     scrollRevealInit();
   }, [data]);
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <div></div>;
   if (!data) return <div></div>;
 
   return (
-    <div className="landing-content" style={{ backgroundColor: "white" }}>
+    <div
+      id="about-quotapath"
+      className="landing-content"
+      style={{ backgroundColor: "white" }}
+    >
       {parse(data, {
         replace: (domNode) => {
           if (

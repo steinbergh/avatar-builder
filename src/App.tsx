@@ -259,6 +259,19 @@ function App() {
           </button>
         </div>
       </div>
+      <div className="about-quotapath-link-wrapper">
+        <button
+          className="save-button blue about-quotapath-link"
+          onClick={() => {
+            const target = document.getElementById("about-quotapath");
+            if (target !== null) {
+              target.scrollIntoView(true);
+            }
+          }}
+        >
+          About QuotaPath
+        </button>
+      </div>
       <LandingPageContent
         onClick={() => {
           openPopupWidget({

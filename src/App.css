@@ -305,3 +305,30 @@ a:visited {
     width: 100%;
   }
 }
+.about-quotapath-link-wrapper {
+  display: block;
+  margin: 0 auto;
+}
+
+.about-quotapath-link {
+  position: relative;
+  font-size: 20px;
+  margin: 0 auto;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.about-quotapath-link:after {
+  content: "";
+  background-image: url("./assets/dropdown-arrow_1.png");
+  display: inline-block;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  right: 0;
+  height: 20px;
+  width: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, 0%);
+}
