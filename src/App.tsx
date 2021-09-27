@@ -31,15 +31,28 @@ function App() {
   const [paModalOpen, setPaModalOpen] = useState(false);
   const [shouldPrint, setShouldPrint] = useState(false);
   const [leadName, setLeadName] = useState<string | null>("");
+  const [nameIsError, setNameIsError] = useState<boolean>(false);
 
   const aviRef = useRef<HTMLDivElement>(null);
   const activeAccessories = state[PartsKeys.ACCESSORY];
+
+  React.useEffect(() => {
+    if (leadName && leadName.length > 0) {
+      setNameIsError(false);
+    }
+  }, [leadName]);
 
   const handleSavePhoto = useCallback(
     (_shouldPrint: boolean) => {
       if (aviRef.current === null) {
         return;
       }
+
+      if (!!!leadName) {
+        setNameIsError(true);
+        return;
+      }
+
       setShouldPrint(_shouldPrint);
       setModalOpen(true);
 
@@ -87,7 +100,7 @@ function App() {
           console.log(err);
         });
     },
-    [aviRef, state, fileName]
+    [aviRef, state, fileName, leadName]
   );
 
   const handleResetExperience = React.useCallback(() => {
@@ -190,6 +203,7 @@ function App() {
                 setLeadName(value);
               }}
               leadName={leadName || ""}
+              isError={nameIsError}
             />
             <Avatar ref={aviRef} {...state} />
             <RandomizeButton onClick={() => setState(randomAvatar())} />

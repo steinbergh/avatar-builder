@@ -27,3 +27,9 @@
 .name-input:focus::placeholder {
   color: transparent;
 }
+
+.name-input.error,
+.name-input.error::placeholder {
+  border-color: red;
+  color: red;
+}

@@ -10,17 +10,20 @@ type PrintAgainModalProps = {
 ReactModal.setAppElement("#root");
 
 export const PrintAgainModal = ({ isOpen, onClose }: PrintAgainModalProps) => {
-  // React.useEffect(() => {
-  //   const handAfterPrint = () => onClose();
-  //   window.addEventListener("onafterprint", handAfterPrint);
-  //   return window.removeEventListener("onafterprint", handAfterPrint);
-  // });
+  React.useEffect(() => {
+    function handleAfterPrint() {
+      onClose();
+    }
+    window.addEventListener("afterprint", handleAfterPrint);
+    return () => {
+      window.removeEventListener("afterprint", handleAfterPrint);
+    };
+  });
 
   React.useEffect(() => {
     const timer = setTimeout(() => {
       window.print();
-      onClose();
-    }, 2 * 1000);
+    }, 1 * 1000);
     return () => {
       clearTimeout(timer);
     };

@@ -13,7 +13,7 @@ type HSFormData = {
 export const submitHubspotForm = async ({
   email,
   firstname,
-  lastname = "SaaStr",
+  lastname = "",
   goal,
   role,
   interest,
