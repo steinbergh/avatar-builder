@@ -38,8 +38,8 @@
   position: relative;
   margin: auto;
   margin-bottom: 20px;
-  width: 227px;
-  height: 227px;
+  width: 180px;
+  height: 180px;
   border: 1px solid var(--light-grey-2);
   border-radius: 8px;
   opacity: 0;
@@ -142,7 +142,7 @@
     display: none !important;
   }
 
-  .name-input-wrapper {
+  .about-quotapath-link-wrapper {
     display: none !important;
   }
 }

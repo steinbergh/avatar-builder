@@ -33,17 +33,17 @@ export const LeadForm = ({
     formState: { errors },
   } = useForm<FormData>();
 
-  React.useEffect(() => {
-    function handleAfterPrint() {
-      onClose();
-    }
-    if (shouldPrint) {
-      window.addEventListener("afterprint", handleAfterPrint);
-    }
-    return () => {
-      window.removeEventListener("afterprint", handleAfterPrint);
-    };
-  });
+  // React.useEffect(() => {
+  //   function handleAfterPrint() {
+  //     onClose();
+  //   }
+  //   if (shouldPrint) {
+  //     window.addEventListener("afterprint", handleAfterPrint);
+  //   }
+  //   return () => {
+  //     window.removeEventListener("afterprint", handleAfterPrint);
+  //   };
+  // });
 
   const onSubmit = handleSubmit(
     (data) => {
@@ -69,9 +69,7 @@ export const LeadForm = ({
           role,
         }),
       ]).then(() => {
-        if (!shouldPrint) {
-          onClose();
-        }
+        onClose();
       });
     },
     (errors, e) => console.log(errors, e)

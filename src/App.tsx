@@ -28,7 +28,7 @@ function App() {
   const [fileName, setFileName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [tyModalOpen, setTyModalOpen] = useState(false);
-  const [paModalOpen, setPaModalOpen] = useState(false);
+  // const [paModalOpen, setPaModalOpen] = useState(false);
   const [shouldPrint, setShouldPrint] = useState(false);
   const [leadName, setLeadName] = useState<string | null>("");
   const [nameIsError, setNameIsError] = useState<boolean>(false);
@@ -137,16 +137,12 @@ function App() {
           leadName={leadName || "there"}
           fileName={fileName}
           onClose={() => {
-            if (shouldPrint) {
-              setPaModalOpen(true);
-            } else {
-              setTyModalOpen(true);
-            }
+            setTyModalOpen(true);
             setModalOpen(false);
           }}
         />
       )}
-      {paModalOpen && (
+      {/* {paModalOpen && (
         <PrintAgainModal
           isOpen={paModalOpen}
           onClose={() => {
@@ -154,7 +150,7 @@ function App() {
             setPaModalOpen(false);
           }}
         />
-      )}
+      )} */}
       {tyModalOpen && (
         <ThankYouModal
           isOpen={tyModalOpen}
