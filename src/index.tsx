@@ -6,16 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import TagManager from "react-gtm-module";
 
 const tagManagerArgs = {
-  gtmId: "GTM-K3G8HQH",
+	gtmId: "GTM-XXXXXX",
 };
 
 TagManager.initialize(tagManagerArgs);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
